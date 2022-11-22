@@ -35,6 +35,12 @@ symlink:
 	ln -s "$(current_path)/src" "$(qmk_repo_path)/keyboards/$(project_name)"
 	@echo "done!"
 
+check_dependencies:
+	@echo "Checking project dependencies..."
+	@if [ -z "$(shell which git)" ]; then echo "Please install the 'git' package!"; echo "Run 'sudo apt install git' if you are in a Debian based distro."; exit 1; fi
+	@if [ -z "$(shell which qmk)" ]; then echo "Please install the 'qmk' package!"; echo "Run 'python3 -m pip install --user qmk'."; exit 1; fi
+	@echo "done!";
+
 qmk_firmware:
 	@echo "Cloning 'qmk_firmware' repo..."
 	@git clone --recursive -b "$(qmk_version)" "$(qmk_repo_url)" "$(qmk_repo_path)"
@@ -46,5 +52,5 @@ clean:
 	@echo "done!"
 
 .POSIX:
-.PHONY: init clean symlink compile flash
+.PHONY: init clean check_dependencies symlink compile flash
 # end
