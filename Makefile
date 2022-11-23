@@ -25,23 +25,35 @@ bootloader.hex:
 	@wget "https://raw.githubusercontent.com/hsgw/USBaspLoader/plaid/firmware/main.hex" -O bootloader.hex
 	@echo "done!"
 
-bootloader: bootloader.hex
+create_hex: bootloader.hex
 	@echo "Preparing '.hex' file..."
 	@sed -i 's#:00000001FF##g' "$(qmk_repo_path)/$(project_name)_$(keymap).hex"
 	@sed -i "#^\s*$#d" "$(qmk_repo_path)/$(project_name)_$(keymap).hex"
 	@cat bootloader.hex >> "$(qmk_repo_path)/$(project_name)_$(keymap).hex"
 	@echo "done!"
 
-hex: compile bootloader
+bootloader: bootloader.hex
+	@echo "Flashing 'usbasploader' bootloader to keyboard..."
+	avrdude -u -c usbasp -p m328p -U flash:w:"bootloader.hex":a -U lfuse:w:0xF7:m -U hfuse:w:0xD0:m -U efuse:w:0xfc:m
+	@echo "done!"
+
+production: compile create_hex
+	@echo "Flashing custom (usbasploader+$(project_name)) firmware to keyboard..."
+	cd $(qmk_repo_path); avrdude -u -c usbasp -p m328p -U flash:w:"$(project_name)_$(keymap).hex":a -U lfuse:w:0xF7:m -U hfuse:w:0xD0:m -U efuse:w:0xfc:m
+	@echo "done!"
 
 compile:
 	@echo "Compiling $(project_name) firmware..."
 	cd $(qmk_repo_path); qmk compile -kb "$(project_name)" -km "$(keymap)"
 	@echo "done!"
 
-flash: hex
+flash:
 	@echo "Flashing $(project_name) firmware to keyboard..."
 	cd $(qmk_repo_path); qmk flash -kb "$(project_name)" -km "$(keymap)"
+	@echo "done!"
+
+flash_bootloader:
+	@echo "Flashing 'usbasploader' bootloader to keyboard..."
 	@echo "done!"
 
 symlink:
@@ -66,5 +78,5 @@ clean:
 	@echo "done!"
 
 .POSIX:
-.PHONY: init clean check_dependencies symlink compile flash
+.PHONY: init create_hex bootloader production compile flash flash_bootloader symlink check_dependencies qmk_firmware clean
 # end
