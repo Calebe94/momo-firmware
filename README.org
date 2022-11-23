@@ -6,13 +6,44 @@
 
 * Table of Contents :toc:
 - [[#about-this-config][About this config]]
+- [[#setup][Setup]]
+  - [[#init][Init]]
+  - [[#bootloader][Bootloader]]
+  - [[#production][Production]]
+  - [[#compile][Compile]]
+  - [[#flash][Flash]]
 - [[#keyboard][Keyboard]]
   - [[#project][Project]]
   - [[#layouts][Layouts]]
   - [[#functions][Functions]]
 
 * About this config
-
+* Setup
+** Init
+Initialize the project
+#+begin_src shell
+make init
+#+end_src
+** Bootloader
+Flash the "usbasploader" bootloader (from "plaid" project) to keyboard.
+#+begin_src shell
+make bootloader
+#+end_src
+** Production
+Flash a custom firmware which combines the "usbasploader" (from "plaid" project) and the Appa firmware.
+#+begin_src shell
+make production
+#+end_src
+** Compile
+Compile the Appa project using the QMK SDK.
+#+begin_src shell
+make compile
+#+end_src
+** Flash
+Flash the Appa firmware to the keyboard.
+#+begin_src shell
+make compile
+#+end_src
 * Keyboard
 
 Plaid based keyboard
