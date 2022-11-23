@@ -20,12 +20,26 @@ qmk_repo_path = "$(current_path)/`basename $(qmk_repo_url)`"
 init: qmk_firmware symlink
 	@echo "all done!"
 
+bootloader.hex:
+	@echo "Downloading 'usbasploader' bootloader for 'plaid' keyboards..."
+	@wget "https://raw.githubusercontent.com/hsgw/USBaspLoader/plaid/firmware/main.hex" -O bootloader.hex
+	@echo "done!"
+
+bootloader: bootloader.hex
+	@echo "Preparing '.hex' file..."
+	@sed -i 's#:00000001FF##g' "$(qmk_repo_path)/$(project_name)_$(keymap).hex"
+	@sed -i "#^\s*$#d" "$(qmk_repo_path)/$(project_name)_$(keymap).hex"
+	@cat bootloader.hex >> "$(qmk_repo_path)/$(project_name)_$(keymap).hex"
+	@echo "done!"
+
+hex: compile bootloader
+
 compile:
 	@echo "Compiling $(project_name) firmware..."
 	cd $(qmk_repo_path); qmk compile -kb "$(project_name)" -km "$(keymap)"
 	@echo "done!"
 
-flash:
+flash: hex
 	@echo "Flashing $(project_name) firmware to keyboard..."
 	cd $(qmk_repo_path); qmk flash -kb "$(project_name)" -km "$(keymap)"
 	@echo "done!"
