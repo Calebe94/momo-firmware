@@ -4,7 +4,14 @@
 #+author: Edimar Calebe Castanho
 #+date:<2022-11-16 qua>
 
+* APPA keyboard firmware
+
+The 4x12 ortholinear keyboard made by through hole components only.
+
+Based on Atmega328p (Or Arduino PRO Mini) with VUSB on QMK firmware.
+
 * Table of Contents :toc:
+- [[#appa-keyboard-firmware][APPA keyboard firmware]]
 - [[#about-this-config][About this config]]
 - [[#setup][Setup]]
   - [[#init][Init]]
