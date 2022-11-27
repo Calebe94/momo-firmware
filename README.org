@@ -125,6 +125,26 @@ enum combo_events {
   MONITOR_2,
   SEND_TO_MONITOR_1,
   SEND_TO_MONITOR_2,
+  TAG1,
+  TAG2,
+  TAG3,
+  TAG4,
+  TAG5,
+  TAG6,
+  TAG7,
+  TAG8,
+  TAG9,
+  TAG0,
+  SEND_TAG1,
+  SEND_TAG2,
+  SEND_TAG3,
+  SEND_TAG4,
+  SEND_TAG5,
+  SEND_TAG6,
+  SEND_TAG7,
+  SEND_TAG8,
+  SEND_TAG9,
+  SEND_TAG0,
   COMBO_LENGTH
 };
 
@@ -134,45 +154,55 @@ const uint16_t PROGMEM monitor_1_combo[] = {KC_W, KC_L, COMBO_END};
 const uint16_t PROGMEM monitor_2_combo[] = {KC_W, KC_H, COMBO_END};
 const uint16_t PROGMEM send_to_monitor_1_combo[] = {KC_LSFT, KC_W, KC_L, COMBO_END};
 const uint16_t PROGMEM send_to_monitor_2_combo[] = {KC_LSFT, KC_W, KC_H, COMBO_END};
+const uint16_t PROGMEM focus_on_tag_1[] = {KC_B, KC_Q, COMBO_END};
+const uint16_t PROGMEM focus_on_tag_2[] = {KC_B, KC_W, COMBO_END};
+const uint16_t PROGMEM focus_on_tag_3[] = {KC_B, KC_E, COMBO_END};
+const uint16_t PROGMEM focus_on_tag_4[] = {KC_B, KC_R, COMBO_END};
+const uint16_t PROGMEM focus_on_tag_5[] = {KC_B, KC_T, COMBO_END};
+const uint16_t PROGMEM focus_on_tag_6[] = {KC_B, KC_Y, COMBO_END};
+const uint16_t PROGMEM focus_on_tag_7[] = {KC_B, KC_U, COMBO_END};
+const uint16_t PROGMEM focus_on_tag_8[] = {KC_B, KC_I, COMBO_END};
+const uint16_t PROGMEM focus_on_tag_9[] = {KC_B, KC_O, COMBO_END};
+const uint16_t PROGMEM focus_on_tag_0[] = {KC_B, KC_P, COMBO_END};
+const uint16_t PROGMEM send_to_tag_1[] = {KC_LSFT, KC_B, KC_Q, COMBO_END};
+const uint16_t PROGMEM send_to_tag_2[] = {KC_LSFT, KC_B, KC_W, COMBO_END};
+const uint16_t PROGMEM send_to_tag_3[] = {KC_LSFT, KC_B, KC_E, COMBO_END};
+const uint16_t PROGMEM send_to_tag_4[] = {KC_LSFT, KC_B, KC_R, COMBO_END};
+const uint16_t PROGMEM send_to_tag_5[] = {KC_LSFT, KC_B, KC_T, COMBO_END};
+const uint16_t PROGMEM send_to_tag_6[] = {KC_LSFT, KC_B, KC_Y, COMBO_END};
+const uint16_t PROGMEM send_to_tag_7[] = {KC_LSFT, KC_B, KC_U, COMBO_END};
+const uint16_t PROGMEM send_to_tag_8[] = {KC_LSFT, KC_B, KC_I, COMBO_END};
+const uint16_t PROGMEM send_to_tag_9[] = {KC_LSFT, KC_B, KC_O, COMBO_END};
+const uint16_t PROGMEM send_to_tag_0[] = {KC_LSFT, KC_B, KC_P, COMBO_END};
 const uint16_t PROGMEM clear_line_combo[] = {KC_BSPC, KC_LSFT, COMBO_END};
 
 combo_t key_combos[] = {
-    [MONITOR_1] = COMBO_ACTION(monitor_1_combo),
-    [MONITOR_2] = COMBO_ACTION(monitor_2_combo),
-    [SEND_TO_MONITOR_1] = COMBO_ACTION(send_to_monitor_1_combo),
-    [SEND_TO_MONITOR_2] = COMBO_ACTION(send_to_monitor_2_combo),
+    [MONITOR_1] = COMBO(monitor_1_combo, LAG(KC_1)),
+    [MONITOR_2] = COMBO(monitor_2_combo, LAG(KC_2)),
+    [SEND_TO_MONITOR_1] = COMBO(send_to_monitor_1_combo, S(LAG(KC_1))),
+    [SEND_TO_MONITOR_2] = COMBO(send_to_monitor_2_combo, S(LAG(KC_1))),
+    [TAG1] = COMBO(focus_on_tag_1, LGUI(KC_1)),
+    [TAG2] = COMBO(focus_on_tag_2, LGUI(KC_2)),
+    [TAG3] = COMBO(focus_on_tag_3, LGUI(KC_3)),
+    [TAG4] = COMBO(focus_on_tag_4, LGUI(KC_4)),
+    [TAG5] = COMBO(focus_on_tag_5, LGUI(KC_5)),
+    [TAG6] = COMBO(focus_on_tag_6, LGUI(KC_6)),
+    [TAG7] = COMBO(focus_on_tag_7, LGUI(KC_7)),
+    [TAG8] = COMBO(focus_on_tag_8, LGUI(KC_8)),
+    [TAG9] = COMBO(focus_on_tag_9, LGUI(KC_9)),
+    [TAG0] = COMBO(focus_on_tag_0, LGUI(KC_0)),
+    [SEND_TAG1] = COMBO(send_to_tag_1, S(LGUI(KC_1))),
+    [SEND_TAG2] = COMBO(send_to_tag_2, S(LGUI(KC_2))),
+    [SEND_TAG3] = COMBO(send_to_tag_3, S(LGUI(KC_3))),
+    [SEND_TAG4] = COMBO(send_to_tag_4, S(LGUI(KC_4))),
+    [SEND_TAG5] = COMBO(send_to_tag_5, S(LGUI(KC_5))),
+    [SEND_TAG6] = COMBO(send_to_tag_6, S(LGUI(KC_6))),
+    [SEND_TAG7] = COMBO(send_to_tag_7, S(LGUI(KC_7))),
+    [SEND_TAG8] = COMBO(send_to_tag_8, S(LGUI(KC_8))),
+    [SEND_TAG9] = COMBO(send_to_tag_9, S(LGUI(KC_9))),
+    [SEND_TAG0] = COMBO(send_to_tag_0, S(LGUI(KC_0))),
 };
 
-void process_combo_event(uint16_t combo_index, bool pressed)
-{
-    switch(combo_index)
-    {
-        case MONITOR_1:
-            if (pressed)
-            {
-                tap_code16(LAG(KC_1));
-            }
-            break;
-        case MONITOR_2:
-            if (pressed)
-            {
-                tap_code16(LAG(KC_2));
-            }
-            break;
-        case SEND_TO_MONITOR_1:
-            if (pressed)
-            {
-                tap_code16(S(LAG(KC_1)));
-            }
-            break;
-        case SEND_TO_MONITOR_2:
-            if (pressed)
-            {
-                tap_code16(S(LAG(KC_2)));
-            }
-            break;
-    }
-}
 #+end_src
 
 **** Defines
