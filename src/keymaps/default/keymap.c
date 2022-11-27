@@ -8,7 +8,7 @@ enum appa_keycodes { QWERTY = SAFE_RANGE };
 const key_override_t delete_key_override =           ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
 const key_override_t comma_key_override =            ko_make_basic(MOD_MASK_SHIFT, KC_COMM, BR_SCLN);
 const key_override_t dot_key_override =              ko_make_basic(MOD_MASK_SHIFT, KC_DOT, BR_COLN);
-const key_override_t right_bracket_key_override =    ko_make_basic(MOD_MASK_SHIFT, KC_RABK, KC_LABK);
+const key_override_t right_bracket_key_override =    ko_make_basic(MOD_MASK_SHIFT, KC_LABK, KC_RABK);
 
 
 // This globally defines all key overrides to be used
@@ -19,6 +19,60 @@ const key_override_t **key_overrides = (const key_override_t *[]){
 	&right_bracket_key_override,
 	NULL // Null terminate the array of overrides!
 };
+
+enum combo_events {
+  MONITOR_1,
+  MONITOR_2,
+  SEND_TO_MONITOR_1,
+  SEND_TO_MONITOR_2,
+  COMBO_LENGTH
+};
+
+uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this instead!
+
+const uint16_t PROGMEM monitor_1_combo[] = {KC_W, KC_L, COMBO_END};
+const uint16_t PROGMEM monitor_2_combo[] = {KC_W, KC_H, COMBO_END};
+const uint16_t PROGMEM send_to_monitor_1_combo[] = {KC_LSFT, KC_W, KC_L, COMBO_END};
+const uint16_t PROGMEM send_to_monitor_2_combo[] = {KC_LSFT, KC_W, KC_H, COMBO_END};
+const uint16_t PROGMEM clear_line_combo[] = {KC_BSPC, KC_LSFT, COMBO_END};
+
+combo_t key_combos[] = {
+    [MONITOR_1] = COMBO_ACTION(monitor_1_combo),
+    [MONITOR_2] = COMBO_ACTION(monitor_2_combo),
+    [SEND_TO_MONITOR_1] = COMBO_ACTION(send_to_monitor_1_combo),
+    [SEND_TO_MONITOR_2] = COMBO_ACTION(send_to_monitor_2_combo),
+};
+
+void process_combo_event(uint16_t combo_index, bool pressed)
+{
+    switch(combo_index)
+    {
+        case MONITOR_1:
+            if (pressed)
+            {
+                tap_code16(LAG(KC_1));
+            }
+            break;
+        case MONITOR_2:
+            if (pressed)
+            {
+                tap_code16(LAG(KC_2));
+            }
+            break;
+        case SEND_TO_MONITOR_1:
+            if (pressed)
+            {
+                tap_code16(S(LAG(KC_1)));
+            }
+            break;
+        case SEND_TO_MONITOR_2:
+            if (pressed)
+            {
+                tap_code16(S(LAG(KC_2)));
+            }
+            break;
+    }
+}
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
@@ -36,14 +90,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * |------+------+------+------+------+------|------+------+------+------+------+------|
     * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   [  |   ]  |
     * |------+------+------+------+------+------|------+------+------+------+------+------|
-    * | Ctrl |   \  | Alt  | GUI  |Lower | Space| ENTER| Raise| RAlt |   /  |   ´  |   >  |
+    * | Ctrl |   \  | Alt  | GUI  |Lower | Space| ENTER| Raise| RAlt |   /  |   ´  |   <  |
     * `-----------------------------------------------------------------------------------'
 */
     [_QWERTY] = LAYOUT(
         KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,  KC_T,   KC_Y,   KC_U,  KC_I,    KC_O,    KC_P,    KC_BSPC,
         KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,  KC_G,   KC_H,   KC_J,  KC_K,    KC_L,    BR_CCED, BR_TILD,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,  KC_B,   KC_N,   KC_M,  KC_COMM, KC_DOT,  BR_LBRC, BR_RBRC,
-        KC_LCTL, BR_BSLS, KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_ENT, RAISE, KC_RALT, BR_SLSH, BR_ACUT, KC_RABK
+        KC_LCTL, BR_BSLS, KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_ENT, RAISE, KC_RALT, BR_SLSH, BR_ACUT, KC_LABK
     ),
 
 /* Lower
