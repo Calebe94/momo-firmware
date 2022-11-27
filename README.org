@@ -31,31 +31,47 @@ Based on Atmega328p (Or Arduino PRO Mini) with VUSB on QMK firmware.
 [[./appa-layout.png]]
 
 * Setup
+
 ** Init
+
 Initialize the project
+
 #+begin_src shell
 make init
 #+end_src
+
 ** Bootloader
+
 Flash the "usbasploader" bootloader (from "plaid" project) to keyboard.
+
 #+begin_src shell
 make bootloader
 #+end_src
+
 ** Production
+
 Flash a custom firmware which combines the "usbasploader" (from "plaid" project) and the Appa firmware.
+
 #+begin_src shell
 make production
 #+end_src
+
 ** Compile
+
 Compile the Appa project using the QMK SDK.
+
 #+begin_src shell
 make compile
 #+end_src
+
 ** Flash
+
 Flash the Appa firmware to the keyboard.
+
 #+begin_src shell
 make compile
 #+end_src
+
 * Keyboard
 
 Plaid based keyboard
@@ -75,7 +91,11 @@ Plaid based keyboard
 #+end_src
 
 ** Layouts
+
 *** Default
+
+The layout I am using right now is ~QWERTY~, the most used layout because it is the stock layout of all keyboards.
+
 **** Includes
 
 #+begin_src c :tangle src/keymaps/default/keymap.c
@@ -85,15 +105,31 @@ Plaid based keyboard
 
 **** Enumerations
 
+The enumeration of the keyboard layers.
+
+I am using the main layer, which is the *QWERTY* layout. The *LOWER*, *RAISE* and *ADJUST* (which will be kind of the settings layer). This layers is not properly configured yet.
+
 #+begin_src c :tangle src/keymaps/default/keymap.c
 enum appa_layers { _QWERTY, _LOWER, _RAISE, _ADJUST };
-
 enum appa_keycodes { QWERTY = SAFE_RANGE };
+#+end_src
+
+**** Defines
+
+Layers activation keys. This layers are momentarily activated.
+
+#+begin_src c :tangle src/keymaps/default/keymap.c
+#define LOWER MO(_LOWER)
+#define RAISE MO(_RAISE)
 #+end_src
 
 **** Overrides
 
 + [[https://github.com/qmk/qmk_firmware/blob/master/docs/feature_key_overrides.md][qmk_firmware/feature_key_overrides.md at master · qmk/qmk_firmware · GitHub ]]
+
+I am overriding some keys to match my key caps.
+
+As an example, I have one key cap which have *","* and *";"* as shift key. But in *ABNT2* (Brazilian Portuguese) this key does not exists. So I have made my own through [[https://github.com/qmk/qmk_firmware/blob/master/docs/feature_key_overrides.md][qmk override feature]].
 
 #+begin_src c :tangle src/keymaps/default/keymap.c
 
@@ -101,7 +137,6 @@ const key_override_t delete_key_override =           ko_make_basic(MOD_MASK_SHIF
 const key_override_t comma_key_override =            ko_make_basic(MOD_MASK_SHIFT, KC_COMM, BR_SCLN);
 const key_override_t dot_key_override =              ko_make_basic(MOD_MASK_SHIFT, KC_DOT, BR_COLN);
 const key_override_t right_bracket_key_override =    ko_make_basic(MOD_MASK_SHIFT, KC_LABK, KC_RABK);
-
 
 // This globally defines all key overrides to be used
 const key_override_t **key_overrides = (const key_override_t *[]){
@@ -117,6 +152,9 @@ const key_override_t **key_overrides = (const key_override_t *[]){
 **** Combos
 
 + [[https://github.com/qmk/qmk_firmware/blob/master/docs/feature_combo.md][qmk_firmware/feature_combo.md at master · qmk/qmk_firmware · GitHub ]]
+
+Since *APPA* is a 40% keyboard (48 keys), I do not have the numbers row, so I have to add the numbers to a layer. And with it gets hard to reproduce my [[https://github.com/Calebe94/dwm/][dwm]] keybindings. So I am using [[https://github.com/qmk/qmk_firmware/blob/master/docs/feature_combo.md][qmk combo feature]] to create key combos (duh!). I am using the *"W"* key to be the "lead key" to move my cursor between my monitors.
+And the *"B"* to be the "lead key" to control my clients "buffers".
 
 #+begin_src c :tangle src/keymaps/default/keymap.c
 
@@ -205,13 +243,6 @@ combo_t key_combos[] = {
 
 #+end_src
 
-**** Defines
-
-#+begin_src c :tangle src/keymaps/default/keymap.c
-#define LOWER MO(_LOWER)
-#define RAISE MO(_RAISE)
-#+end_src
-
 **** Modifiers
 
 #+begin_src c :tangle src/keymaps/default/keymap.c
@@ -225,7 +256,7 @@ const uint16_t modifiers[] = {KC_LCTL, KC_RCTL, KC_LALT, KC_RALT, KC_LSFT, KC_RS
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #+end_src
 
-**** Querty(default)
+***** Querty(default)
 #+begin_src c :tangle src/keymaps/default/keymap.c
 /* Qwerty
     * ,-----------------------------------------------------------------------------------.
@@ -246,7 +277,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 #+end_src
 
-**** Lower
+***** Lower
 
 #+begin_src c :tangle src/keymaps/default/keymap.c
 
@@ -269,7 +300,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 #+end_src
 
-**** Raise
+***** Raise
 
 #+begin_src c :tangle src/keymaps/default/keymap.c
 
@@ -291,7 +322,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY),
 #+end_src
 
-**** Adjust
+***** Adjust
 
 #+begin_src c :tangle src/keymaps/default/keymap.c
     /* Adjust (Lower + Raise)

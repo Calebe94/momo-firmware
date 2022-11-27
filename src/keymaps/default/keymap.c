@@ -2,14 +2,15 @@
 #include "keymap_brazilian_abnt2.h"
 
 enum appa_layers { _QWERTY, _LOWER, _RAISE, _ADJUST };
-
 enum appa_keycodes { QWERTY = SAFE_RANGE };
+
+#define LOWER MO(_LOWER)
+#define RAISE MO(_RAISE)
 
 const key_override_t delete_key_override =           ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
 const key_override_t comma_key_override =            ko_make_basic(MOD_MASK_SHIFT, KC_COMM, BR_SCLN);
 const key_override_t dot_key_override =              ko_make_basic(MOD_MASK_SHIFT, KC_DOT, BR_COLN);
 const key_override_t right_bracket_key_override =    ko_make_basic(MOD_MASK_SHIFT, KC_LABK, KC_RABK);
-
 
 // This globally defines all key overrides to be used
 const key_override_t **key_overrides = (const key_override_t *[]){
@@ -102,9 +103,6 @@ combo_t key_combos[] = {
     [SEND_TAG9] = COMBO(send_to_tag_9, S(LGUI(KC_9))),
     [SEND_TAG0] = COMBO(send_to_tag_0, S(LGUI(KC_0))),
 };
-
-#define LOWER MO(_LOWER)
-#define RAISE MO(_RAISE)
 
 // array of keys considered modifiers for led purposes
 const uint16_t modifiers[] = {KC_LCTL, KC_RCTL, KC_LALT, KC_RALT, KC_LSFT, KC_RSFT, KC_LGUI, KC_RGUI, LOWER, RAISE};
