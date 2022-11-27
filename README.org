@@ -6,13 +6,12 @@
 
 * APPA keyboard firmware
 
-The 4x12 ortholinear keyboard made by through hole components only.
+The 4x12 ortholinear keyboard made using through hole components only.
 
 Based on Atmega328p (Or Arduino PRO Mini) with VUSB on QMK firmware.
 
 * Table of Contents :toc:
 - [[#appa-keyboard-firmware][APPA keyboard firmware]]
-- [[#about-this-config][About this config]]
 - [[#setup][Setup]]
   - [[#init][Init]]
   - [[#bootloader][Bootloader]]
@@ -24,11 +23,6 @@ Based on Atmega328p (Or Arduino PRO Mini) with VUSB on QMK firmware.
   - [[#layouts][Layouts]]
   - [[#functions][Functions]]
 - [[#useful-links][Useful links]]
-
-* About this config
-#+attr_html: :width 100px
-#+attr_latex: :width 100px
-[[./appa-layout.png]]
 
 * Setup
 
@@ -251,6 +245,10 @@ const uint16_t modifiers[] = {KC_LCTL, KC_RCTL, KC_LALT, KC_RALT, KC_LSFT, KC_RS
 #+end_src
 
 **** Keymaps
+
+#+attr_html: :width 100px
+#+attr_latex: :width 100px
+[[./appa-layout.png]]
 
 #+begin_src c :tangle src/keymaps/default/keymap.c
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
