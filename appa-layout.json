@@ -27,14 +27,14 @@
         0,
         0,
         0,
-        2,
+        0,
         0,
         0,
         2
       ],
       "w": 2.5
     },
-    "Lable\nHolding\nTriple Tap\nHold\n\n\n\nShift\n\nTap\nToggle"
+    "Lable\nHolding\nShift\nHold\n\n\n\n\nTriple Tap\nTap\nToggle"
   ],
   [
     {
@@ -47,13 +47,22 @@
     },
     "ESC",
     {
-      "c": "#91cfbc",
+      "c": "#cccccc",
       "t": "#000000"
     },
     "Q",
     "W",
     "E",
+    {
+      "f": 5
+    },
     "R",
+    {
+      "f": 3,
+      "fa": [
+        5
+      ]
+    },
     "T",
     {
       "x": 0.25
@@ -66,15 +75,20 @@
     {
       "c": "#000000",
       "t": "#ffffff",
-      "a": 6,
+      "a": 4,
       "f": 5,
       "fa": [
         0,
         0,
-        1
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
       ]
     },
-    "\n\nDEL\n\n\n\n\n\n<i class='mss mss-Unicode-BackSpace-DeleteLeft-Big-2'></i>"
+    "\n\nDEL\n\n\n\n\n\n\n<i class='mss mss-Unicode-BackSpace-DeleteLeft-Big-2'></i>"
   ],
   [
     {
@@ -82,7 +96,7 @@
     },
     "TAB",
     {
-      "c": "#91cfbc",
+      "c": "#cccccc",
       "t": "#000000"
     },
     "A",
@@ -99,10 +113,10 @@
     "L",
     "Ç",
     {
-      "a": 6,
+      "a": 4,
       "f": 5
     },
-    "\n\n^\n\n\n\n\n\n~"
+    "\n\n^\n\n\n\n\n\n\n~"
   ],
   [
     {
@@ -112,7 +126,7 @@
     },
     "&#8679;",
     {
-      "c": "#91cfbc",
+      "c": "#cccccc",
       "t": "#000000",
       "f": 3,
       "fa": [
@@ -121,12 +135,16 @@
     },
     "Z",
     "X",
+    {
+      "f": 5
+    },
     "C",
     "V",
     "B",
     {
       "x": 0.25,
       "c": "#cfb891",
+      "f": 3,
       "fa": [
         1
       ]
@@ -143,7 +161,7 @@
     "\n<i class='mss mss-Unicode-Option-3'></i> / AltGr\n\n\n\n\nN",
     {
       "x": -1,
-      "c": "#91cfbc",
+      "c": "#cccccc",
       "a": 7,
       "fa": [
         5
@@ -168,7 +186,7 @@
     "\n<i class='fa fa-angle-up'></i> / Ctrl\n\n\n\n\nA",
     {
       "x": -1,
-      "c": "#91cfbc",
+      "c": "#cccccc",
       "a": 7,
       "fa": [
         5
@@ -193,58 +211,30 @@
     "\n&#8679;\n\n\n\n\nO",
     {
       "x": -1,
-      "c": "#91cfbc",
-      "a": 6,
-      "fa": [
-        1,
-        1,
-        5,
-        0,
-        0,
-        0,
-        0,
-        0,
-        5
-      ]
+      "c": "#cccccc",
+      "a": 4,
+      "f": 5
     },
-    "\n\n;\n\n\n\n\n\n,",
+    "\n\n;\n\n\n\n\n\n\n,",
     {
       "c": "#cfb891",
-      "a": 4,
+      "f": 3,
       "fa": [
+        0,
         1,
-        1,
-        5,
+        0,
         1
       ]
     },
     "\nLT\n\n<i class='fa fa-cog'></i>\n\n\n\n\n\nC",
     {
       "x": -1,
-      "c": "#91cfbc",
-      "a": 6,
-      "fa": [
-        1,
-        1,
-        5,
-        1,
-        0,
-        0,
-        0,
-        0,
-        5
-      ]
-    },
-    "\n\n:\n\n\n\n\n\n.",
-    {
-      "f": 3
-    },
-    "\n\n{\n\n\n\n\n\n[",
-    {
-      "c": "#a3a3a3",
+      "c": "#cccccc",
       "f": 5
     },
-    "\n\n}\n\n\n\n\n\n]"
+    "\n\n:\n\n\n\n\n\n\n.",
+    "\n\n{\n\n\n\n\n\n\n[",
+    "\n\n}\n\n\n\n\n\n\n]"
   ],
   [
     {
@@ -254,28 +244,15 @@
     },
     "Ctrl",
     {
-      "c": "#91cfbc",
+      "c": "#cccccc",
       "t": "#000000",
-      "a": 6,
-      "f": 3,
-      "fa": [
-        0,
-        0,
-        5,
-        0,
-        0,
-        0,
-        0,
-        0,
-        5
-      ]
+      "a": 4
     },
-    "\n\n|\n\n\n\n\n\n\\",
+    "\n\n|\n\n\n\n\n\n\n\\",
     {
       "c": "#000000",
       "t": "#ffffff",
-      "a": 7,
-      "f": 5
+      "a": 7
     },
     "ALT",
     "<i class='mss mss-Unicode-Command-3'></i>",
@@ -308,19 +285,19 @@
     },
     "Alt Gr",
     {
-      "c": "#91cfbc",
+      "c": "#cccccc",
       "t": "#000000",
-      "a": 6
+      "a": 4,
+      "f": 5
     },
-    "\n\n?\n\n\n\n\n\n/",
-    "\n\n`\n\n\n\n\n\n´",
-    "\n\n<\n\n\n\n\n\n>"
+    "\n\n?\n\n\n\n\n\n\n/",
+    "\n\n`\n\n\n\n\n\n\n´",
+    "\n\n<\n\n\n\n\n\n\n>"
   ],
   [
     {
       "y": 1,
-      "c": "#cccccc",
-      "a": 4,
+      "f": 3,
       "fa": [
         5,
         1
@@ -332,7 +309,6 @@
   ],
   [
     {
-      "c": "#91cfbc",
       "a": 7,
       "f": 3
     },
@@ -438,7 +414,7 @@
     "\n<i class='mss mss-Unicode-Option-3'></i> / AltGr\n\n\n\n\nN",
     {
       "x": -1,
-      "c": "#91cfbc",
+      "c": "#cccccc",
       "a": 7,
       "f": 3
     },
@@ -460,7 +436,7 @@
     "\n&#8679;\n\n\n\n\nO",
     {
       "x": -1,
-      "c": "#91cfbc",
+      "c": "#cccccc",
       "a": 7,
       "f": 3
     },
@@ -478,7 +454,7 @@
     "\nLT\n\n<i class='fa fa-cog'></i>\n\n\n\n\n\nC",
     {
       "x": -1,
-      "c": "#91cfbc",
+      "c": "#cccccc",
       "a": 7,
       "f": 3
     },
@@ -508,7 +484,7 @@
     },
     "",
     {
-      "c": "#91cfbc",
+      "c": "#cccccc",
       "fa": [
         4
       ]
@@ -530,7 +506,6 @@
   [
     {
       "y": 1,
-      "c": "#cccccc",
       "a": 4,
       "fa": [
         5,
@@ -543,62 +518,22 @@
   ],
   [
     {
-      "c": "#91cfbc",
-      "a": 6,
-      "fa": [
-        5,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        5
-      ]
+      "f": 5
     },
-    "\n\n\"\n\n\n\n\n\n'",
+    "\n\n\"\n\n\n\n\n\n\n'",
+    "\n\n!\n\n\n\n\n\n\n1",
+    "\n\n@\n\n\n\n\n\n\n2",
+    "\n\n#\n\n\n\n\n\n\n3",
+    "\n\n$\n\n\n\n\n\n\n4",
+    "\n\n%\n\n\n\n\n\n\n5",
     {
-      "f": 3
+      "x": 0.25
     },
-    "\n\n!\n\n\n\n\n\n1",
-    {
-      "f": 3
-    },
-    "\n\n@\n\n\n\n\n\n2",
-    {
-      "f": 3
-    },
-    "\n\n#\n\n\n\n\n\n3",
-    {
-      "f": 3
-    },
-    "\n\n$\n\n\n\n\n\n4",
-    {
-      "f": 3
-    },
-    "\n\n%\n\n\n\n\n\n5",
-    {
-      "x": 0.25,
-      "f": 3
-    },
-    "\n\n¨\n\n\n\n\n\n6",
-    {
-      "f": 3
-    },
-    "\n\n&\n\n\n\n\n\n7",
-    {
-      "f": 3
-    },
-    "\n\n*\n\n\n\n\n\n8",
-    {
-      "f": 3
-    },
-    "\n\n(\n\n\n\n\n\n9",
-    {
-      "f": 3
-    },
-    "\n\n)\n\n\n\n\n\n0",
+    "\n\n¨\n\n\n\n\n\n\n6",
+    "\n\n&\n\n\n\n\n\n\n7",
+    "\n\n*\n\n\n\n\n\n\n8",
+    "\n\n(\n\n\n\n\n\n\n9",
+    "\n\n)\n\n\n\n\n\n\n0",
     {
       "a": 7,
       "f": 3
@@ -654,7 +589,7 @@
     "\n<i class='mss mss-Unicode-Option-3'></i> / AltGr\n\n\n\n\nN",
     {
       "x": -1,
-      "c": "#91cfbc",
+      "c": "#cccccc",
       "a": 7
     },
     "",
@@ -671,7 +606,7 @@
     "\n<i class='fa fa-angle-up'></i> / Ctrl\n\n\n\n\nA",
     {
       "x": -1,
-      "c": "#91cfbc",
+      "c": "#cccccc",
       "a": 7
     },
     "",
@@ -688,7 +623,7 @@
     "\n&#8679;\n\n\n\n\nO",
     {
       "x": -1,
-      "c": "#91cfbc",
+      "c": "#cccccc",
       "a": 7
     },
     "",
@@ -705,7 +640,7 @@
     "\nLT\n\n<i class='fa fa-cog'></i>\n\n\n\n\n\nC",
     {
       "x": -1,
-      "c": "#91cfbc",
+      "c": "#cccccc",
       "a": 7
     },
     "",
@@ -734,7 +669,7 @@
     },
     "",
     {
-      "c": "#91cfbc",
+      "c": "#cccccc",
       "f": 3
     },
     "⏭︎",
@@ -754,7 +689,6 @@
   [
     {
       "y": 1,
-      "c": "#cccccc",
       "a": 4,
       "fa": [
         5,
@@ -767,7 +701,6 @@
   ],
   [
     {
-      "c": "#91cfbc",
       "a": 7,
       "f": 3
     },
@@ -836,7 +769,7 @@
     "\n<i class='mss mss-Unicode-Option-3'></i> / AltGr\n\n\n\n\nN",
     {
       "x": -1,
-      "c": "#91cfbc",
+      "c": "#cccccc",
       "a": 7
     },
     "",
@@ -853,7 +786,7 @@
     "\n<i class='fa fa-angle-up'></i> / Ctrl\n\n\n\n\nA",
     {
       "x": -1,
-      "c": "#91cfbc",
+      "c": "#cccccc",
       "a": 7
     },
     "",
@@ -870,7 +803,7 @@
     "\n&#8679;\n\n\n\n\nO",
     {
       "x": -1,
-      "c": "#91cfbc",
+      "c": "#cccccc",
       "a": 7
     },
     "",
@@ -887,7 +820,7 @@
     "\nLT\n\n<i class='fa fa-cog'></i>\n\n\n\n\n\nC",
     {
       "x": -1,
-      "c": "#91cfbc",
+      "c": "#cccccc",
       "a": 7
     },
     "",
@@ -916,7 +849,7 @@
     },
     "",
     {
-      "c": "#91cfbc"
+      "c": "#cccccc"
     },
     "",
     "",

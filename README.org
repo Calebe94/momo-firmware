@@ -26,6 +26,10 @@ Based on Atmega328p (Or Arduino PRO Mini) with VUSB on QMK firmware.
 - [[#useful-links][Useful links]]
 
 * About this config
+#+attr_html: :width 100px
+#+attr_latex: :width 100px
+[[./appa-layout.png]]
+
 * Setup
 ** Init
 Initialize the project
