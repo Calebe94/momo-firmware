@@ -48,6 +48,8 @@ enum combo_events {
   SEND_TAG0,
   HELLO_WORLD,
   OLA_MUNDO,
+  MINUS,
+  EQUAL,
   COMBO_LENGTH
 };
 
@@ -77,8 +79,10 @@ const uint16_t PROGMEM send_to_tag_7[] = {KC_LSFT, KC_B, KC_U, COMBO_END};
 const uint16_t PROGMEM send_to_tag_8[] = {KC_LSFT, KC_B, KC_I, COMBO_END};
 const uint16_t PROGMEM send_to_tag_9[] = {KC_LSFT, KC_B, KC_O, COMBO_END};
 const uint16_t PROGMEM send_to_tag_0[] = {KC_LSFT, KC_B, KC_P, COMBO_END};
-const uint16_t PROGMEM hello_world[]   = {KC_J, KC_K, COMBO_END};
-const uint16_t PROGMEM ola_mundo[]     = {KC_K, KC_J, COMBO_END};
+/* const uint16_t PROGMEM hello_world[]   = {KC_J, KC_K, COMBO_END}; */
+/* const uint16_t PROGMEM ola_mundo[]     = {KC_K, KC_J, COMBO_END}; */
+const uint16_t PROGMEM minus_combo[]   = {BR_CCED, BR_TILD, COMBO_END};
+const uint16_t PROGMEM equal_combo[]   = {BR_LBRC, BR_RBRC, COMBO_END};
 const uint16_t PROGMEM clear_line_combo[] = {KC_BSPC, KC_LSFT, COMBO_END};
 
 combo_t key_combos[] = {
@@ -105,9 +109,11 @@ combo_t key_combos[] = {
     [SEND_TAG7] = COMBO(send_to_tag_7, S(LGUI(KC_7))),
     [SEND_TAG8] = COMBO(send_to_tag_8, S(LGUI(KC_8))),
     [SEND_TAG9] = COMBO(send_to_tag_9, S(LGUI(KC_9))),
-    [SEND_TAG0] = COMBO(send_to_tag_0, S(LGUI(KC_0))),
-    [HELLO_WORLD] = COMBO_ACTION(hello_world),
-    [OLA_MUNDO] = COMBO_ACTION(ola_mundo),
+
+    /* [HELLO_WORLD] = COMBO_ACTION(hello_world), */
+    /* [OLA_MUNDO] = COMBO_ACTION(ola_mundo), */
+    [MINUS] = COMBO(minus_combo, KC_MINS),
+    [EQUAL] = COMBO(equal_combo, KC_EQL),
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed)

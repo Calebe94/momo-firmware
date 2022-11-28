@@ -139,4 +139,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define COMBO_MUST_PRESS_IN_ORDER 1
 #define COMBO_MUST_PRESS_IN_ORDER_PER_COMBO 1
-#define COMBO_TERM 80
+/* #define COMBO_TERM 50 */
