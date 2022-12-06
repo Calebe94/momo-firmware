@@ -164,14 +164,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * |------+------+------+------+------+------|------+------+------+------+------+------|
     * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   [  |   ]  |
     * |------+------+------+------+------+------|------+------+------+------+------+------|
-    * | Ctrl |   \  | Alt  | GUI  |Lower | Space| ENTER| Raise| RAlt |   /  |   ´  |   <  |
+    * | Ctrl |   \  | Alt  | GUI  |Lower | Space| ENTER| Raise|   /  | RAlt |   ´  |   <  |
     * `-----------------------------------------------------------------------------------'
 */
     [_QWERTY] = LAYOUT(
         KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,  KC_T,   KC_Y,   KC_U,  KC_I,    KC_O,    KC_P,    KC_BSPC,
         KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,  KC_G,   KC_H,   KC_J,  KC_K,    KC_L,    BR_CCED, BR_TILD,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,  KC_B,   KC_N,   KC_M,  KC_COMM, KC_DOT,  BR_LBRC, BR_RBRC,
-        KC_LCTL, BR_BSLS, KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_ENT, RAISE, KC_RALT, BR_SLSH, BR_ACUT, KC_LABK
+        KC_LCTL, BR_BSLS, KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_ENT, RAISE, BR_SLSH, KC_RALT, BR_ACUT, KC_LABK
     ),
 
 /* Lower
@@ -228,6 +228,56 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-  return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+/* layer_state_t layer_state_set_user(layer_state_t state) { */
+/*   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST); */
+/* } */
+
+//********COLORES Y ANIMACIONES****************
+
+uint32_t base_mode = 1; // solid
+uint32_t lock_mode = 21; // Knight Rider
+
+void keyboard_post_init_user(void)
+{
+    rgblight_enable_noeeprom();
+    layer_state_set_user(layer_state);
+}
+
+layer_state_t layer_state_set_user(layer_state_t state)
+{
+    state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    uint8_t layer = biton32(state);
+    switch (layer)
+    {
+        case _QWERTY:
+            rgblight_sethsv_noeeprom(HSV_RED);
+            break;
+        case _LOWER:
+            rgblight_sethsv_noeeprom(HSV_GREEN);
+            break;
+        case _RAISE:
+            rgblight_sethsv_noeeprom(HSV_BLUE);
+            break;
+        case _ADJUST:
+            rgblight_sethsv_noeeprom(HSV_YELLOW);
+            break;
+        default:
+            rgblight_sethsv_noeeprom(7, 255, 230);
+            break;
+    }
+
+    return state;
+}
+
+bool led_update_user(led_t led_state)
+{
+    if  (led_state.caps_lock)
+    {
+        rgblight_mode_noeeprom(lock_mode);
+    }
+    else
+    {
+        rgblight_mode_noeeprom(base_mode);
+    }
+    return true;
 }
