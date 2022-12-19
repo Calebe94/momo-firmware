@@ -158,9 +158,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
     * ,-----------------------------------------------------------------------------------.
-    * | Esc  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
+    * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
     * |------+------+------+------+------+------|------+------+------+------+------+------|
-    * | Tab  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   Ç  |  ~   |
+    * | ESC  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   Ç  |  ~   |
     * |------+------+------+------+------+------|------+------+------+------+------+------|
     * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   [  |   ]  |
     * |------+------+------+------+------+------|------+------+------+------+------+------|
@@ -168,8 +168,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * `-----------------------------------------------------------------------------------'
 */
     [_QWERTY] = LAYOUT(
-        KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,  KC_T,   KC_Y,   KC_U,  KC_I,    KC_O,    KC_P,    KC_BSPC,
-        KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,  KC_G,   KC_H,   KC_J,  KC_K,    KC_L,    BR_CCED, BR_TILD,
+        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,  KC_T,   KC_Y,   KC_U,  KC_I,    KC_O,    KC_P,    KC_BSPC,
+        KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,  KC_G,   KC_H,   KC_J,  KC_K,    KC_L,    BR_CCED, BR_TILD,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,  KC_B,   KC_N,   KC_M,  KC_COMM, KC_DOT,  BR_LBRC, BR_RBRC,
         KC_LCTL, BR_BSLS, KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_ENT, RAISE, BR_SLSH, KC_RALT, BR_ACUT, KC_LABK
     ),
@@ -222,7 +222,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_ADJUST] = LAYOUT(
         QK_BOOT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RGB_SAD, RGB_VAD, RGB_VAI, RGB_SAI, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS)
 
@@ -233,7 +233,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* } */
 
 //********COLORES Y ANIMACIONES****************
-
 uint32_t base_mode = 1; // solid
 uint32_t lock_mode = 21; // Knight Rider
 
@@ -250,19 +249,32 @@ layer_state_t layer_state_set_user(layer_state_t state)
     switch (layer)
     {
         case _QWERTY:
-            rgblight_sethsv_noeeprom(HSV_RED);
+            /* rgblight_setrgb(RGB_RED); */
+            /* rgblight_sethsv(HSV_RED); */
+            /* rgblight_sethsv(rgblight_get_hue(), rgblight_get_sat(), rgblight_get_val()); */
+            rgblight_sethsv(0, rgblight_get_sat(), rgblight_get_val());
+            /* rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT); */
             break;
         case _LOWER:
-            rgblight_sethsv_noeeprom(HSV_GREEN);
+            /* rgblight_setrgb(RGB_GREEN); */
+            /* rgblight_sethsv(HSV_GREEN); */
+            rgblight_sethsv(85, rgblight_get_sat(), rgblight_get_val());
+            /* rgblight_mode_noeerom(RGBLIGHT_MODE_STATIC_LIGHT); */
             break;
         case _RAISE:
-            rgblight_sethsv_noeeprom(HSV_BLUE);
+            /* rgblight_setrgb(RGB_BLUE); */
+            /* rgblight_sethsv(HSV_BLUE); */
+            rgblight_sethsv(170, rgblight_get_sat(), rgblight_get_val());
+            /* rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT); */
             break;
         case _ADJUST:
-            rgblight_sethsv_noeeprom(HSV_YELLOW);
+            /* rgblight_setrgb(RGB_YELLOW); */
+            /* rgblight_sethsv(HSV_YELLOW); */
+            rgblight_sethsv(43, rgblight_get_sat(), rgblight_get_val());
+            /* rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT); */
             break;
         default:
-            rgblight_sethsv_noeeprom(7, 255, 230);
+            /* rgblight_sethsv_noeeprom(7, 255, 230); */
             break;
     }
 
@@ -280,4 +292,69 @@ bool led_update_user(led_t led_state)
         rgblight_mode_noeeprom(base_mode);
     }
     return true;
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record)
+{
+    switch(keycode)
+    {
+        case RGB_VAI:
+            if( record->event.pressed)
+            {
+                rgblight_increase_val_noeeprom();
+            }
+            break;
+        case RGB_VAD:
+            if( record->event.pressed)
+            {
+                rgblight_decrease_val_noeeprom();
+            }
+            break;
+        case RGB_SAI:
+            if(record->event.pressed)
+            {
+                rgblight_increase_sat();
+            }
+            break;
+        case RGB_SAD:
+            if( record->event.pressed)
+            {
+                rgblight_decrease_sat();
+            }
+            break;
+        case RGB_HUI:
+            if( record->event.pressed)
+            {
+                rgblight_increase_hue_noeeprom();
+            }
+            break;
+        case RGB_HUD:
+            if( record->event.pressed)
+            {
+                rgblight_decrease_hue_noeeprom();
+            }
+            break;
+        case RGB_TOG:
+            if(record->event.pressed)
+            {
+                rgblight_toggle_noeeprom();
+            }
+            break;
+        case RGB_MOD:
+            if(record->event.pressed)
+            {
+                /* rgb_mode = rgblight_get_mode(); */
+            }
+            break;
+        case RGB_RMOD:
+            if(record->event.pressed)
+            {
+                rgblight_step_reverse_noeeprom();
+                /* rgb_mode = rgblight_get_mode(); */
+            }
+            break;
+        default:
+            return true;
+    }
+    return false;
 }

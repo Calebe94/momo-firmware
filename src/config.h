@@ -145,3 +145,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLED_NUM 22
 #define RGBLIGHT_ANIMATIONS
 #define RGBLIGHT_LAYERS
+#define RGBLIGHT_LIMIT_VAL 128
