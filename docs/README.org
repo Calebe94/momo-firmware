@@ -1,11 +1,73 @@
+#+title: docs
+#+property: header-args
+#+auto_tangle: t
+#+author: Edimar Calebe Castanho
+#+date:<2023-02-21 ter>
+
+* Table of Contents :toc:
+- [[#project][Project]]
+- [[#layouts][Layouts]]
+  - [[#default][Default]]
+- [[#functions][Functions]]
+  - [[#rgb][RGB]]
+  - [[#events][Events]]
+
+* Project
+
+#+begin_src sh
+├── config.h
+├── info.json
+├── keymaps
+│   └── default
+│       └── keymap.c
+├── readme.md
+└── rules.mk
+#+end_src
+
+* Layouts
+
+** Default
+
+The layout I am using right now is ~QWERTY~, the most used layout because it is the stock layout of all keyboards.
+
+*** Includes
+
+Since I am brazillian I want the keyboard to reproduce the [[https://learn.microsoft.com/en-us/globalization/keyboards/kbdbr_2][ABNT2]] keycodes/symbols. To do that I just need to include the ~keymap_brazilian_abnt2.h~ file.
+
+#+begin_src c :tangle ../src/keymaps/default/keymap.c
 #include QMK_KEYBOARD_H
 #include "keymap_brazilian_abnt2.h"
+#+end_src
 
+*** Enumerations
+
+The enumeration of the keyboard layers.
+
+I am using the main layer, which is the *QWERTY* layout. The *LOWER*, *RAISE* and *ADJUST* (which will be kind of the settings layer). This layers is not properly configured yet.
+
+#+begin_src c :tangle ../src/keymaps/default/keymap.c
 enum appa_layers { _QWERTY, _LOWER, _RAISE, _ADJUST };
 enum appa_keycodes { QWERTY = SAFE_RANGE };
+#+end_src
 
+*** Defines
+
+Layers activation keys. This layers are momentarily activated.
+
+#+begin_src c :tangle ../src/keymaps/default/keymap.c
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
+#+end_src
+
+*** Overrides
+
++ [[https://github.com/qmk/qmk_firmware/blob/master/docs/feature_key_overrides.md][qmk_firmware/feature_key_overrides.md at master · qmk/qmk_firmware · GitHub ]]
+
+I am overriding some keys to match my key caps.
+
+As an example, I have one key cap which have *","* and *";"* as shift key. But in *ABNT2* (Brazilian Portuguese) this key does not exists. So I have made my own through [[https://github.com/qmk/qmk_firmware/blob/master/docs/feature_key_overrides.md][qmk override feature]].
+
+#+begin_src c :tangle ../src/keymaps/default/keymap.c
 
 const key_override_t delete_key_override =           ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
 const key_override_t comma_key_override =            ko_make_basic(MOD_MASK_SHIFT, KC_COMM, BR_SCLN);
@@ -20,6 +82,17 @@ const key_override_t **key_overrides = (const key_override_t *[]){
 	&right_bracket_key_override,
 	NULL // Null terminate the array of overrides!
 };
+
+#+end_src
+
+*** Combos
+
++ [[https://github.com/qmk/qmk_firmware/blob/master/docs/feature_combo.md][qmk_firmware/feature_combo.md at master · qmk/qmk_firmware · GitHub ]]
+
+Since *APPA* is a 40% keyboard (48 keys), I do not have the numbers row, so I have to add the numbers to a layer. And with it gets hard to reproduce my [[https://github.com/Calebe94/dwm/][dwm]] keybindings. So I am using [[https://github.com/qmk/qmk_firmware/blob/master/docs/feature_combo.md][qmk combo feature]] to create key combos (duh!). I am using the *"W"* key to be the "lead key" to move my cursor between my monitors.
+And the *"B"* to be the "lead key" to control my clients "buffers".
+
+#+begin_src c :tangle ../src/keymaps/default/keymap.c
 
 enum combo_events {
   MONITOR_1,
@@ -140,8 +213,8 @@ bool get_combo_must_press_in_order(uint16_t combo_index, combo_t *combo)
     switch (combo_index)
     {
         /* List combos here that you want to only activate if their keys
-         * are pressed in the same order as they are defined in the combo's key
-         * array. */
+         ,* are pressed in the same order as they are defined in the combo's key
+         ,* array. */
         case HELLO_WORLD:
             return true;
         case OLA_MUNDO:
@@ -150,12 +223,27 @@ bool get_combo_must_press_in_order(uint16_t combo_index, combo_t *combo)
             return false;
     }
 }
+#+end_src
 
+*** Modifiers
+
+#+begin_src c :tangle ../src/keymaps/default/keymap.c
 // array of keys considered modifiers for led purposes
 const uint16_t modifiers[] = {KC_LCTL, KC_RCTL, KC_LALT, KC_RALT, KC_LSFT, KC_RSFT, KC_LGUI, KC_RGUI, LOWER, RAISE};
+#+end_src
 
+*** Keymaps
+
+#+attr_html: :width 100px
+#+attr_latex: :width 100px
+[[./appa-layout.png]]
+
+#+begin_src c :tangle ../src/keymaps/default/keymap.c
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+#+end_src
 
+**** Querty(default)
+#+begin_src c :tangle ../src/keymaps/default/keymap.c
 /* Qwerty
     * ,-----------------------------------------------------------------------------------.
     * | ESC  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
@@ -173,65 +261,94 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,  KC_B,   KC_N,   KC_M,  KC_COMM, KC_DOT,  BR_LBRC, BR_RBRC,
         KC_LCTL, BR_BSLS, KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_ENT, RAISE, BR_SLSH, KC_RALT, BR_ACUT, KC_LABK
     ),
+#+end_src
+
+**** Lower
+
+#+begin_src c :tangle ../src/keymaps/default/keymap.c
 
 /* Lower
-    * ,-----------------------------------------------------------------------------------.
-    * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  | F10  | F12  | F12  |
-    * |------+------+------+------+------+------|------+------+------+------+------+------|
-    * |      |      |      |      |      |      |  ←   |   ↓  |  ↑   |   →  |      |      |
-    * |------+------+------+------+------+------|------+------+------+------+------+------|
-    * |      |      |      |      |      |      | HOME | Pg Dn| Pg Up| End  |      |      |
-    * |------+------+------+------+------+------|------+------+------+------+------+------|
-    * |      |      |      |      |      |      |      |      | Next | Vol- | Vol+ | Play |
-    * `-----------------------------------------------------------------------------------'
-*/
+    ,* ,-----------------------------------------------------------------------------------.
+    ,* |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  | F10  | F12  | F12  |
+    ,* |------+------+------+------+------+------|------+------+------+------+------+------|
+    ,* |      |      |      |      |      |      |  ←   |   ↓  |  ↑   |   →  |      |      |
+    ,* |------+------+------+------+------+------|------+------+------+------+------+------|
+    ,* |      |      |      |      |      |      | HOME | Pg Dn| Pg Up| End  |      |      |
+    ,* |------+------+------+------+------+------|------+------+------+------+------+------|
+    ,* |      |      |      |      |      |      |      |      | Next | Vol- | Vol+ | Play |
+    ,* `-----------------------------------------------------------------------------------'
+,*/
     [_LOWER] = LAYOUT(
         KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,  KC_F12,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_HOME, KC_PGUP, KC_PGDN, KC_END,   KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MNXT, KC_VOLD,  KC_VOLU, KC_MPLY
     ),
+#+end_src
+
+**** Raise
+
+#+begin_src c :tangle ../src/keymaps/default/keymap.c
 
     /* Raise
-     * ,-----------------------------------------------------------------------------------.
-     * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
-     * |------+------+------+------+------+------|------+------+------+------+------+------|
-     * |      |      |      |      |      |      |      |   -  |   =  |      |      |      |
-     * |------+------+------+------+------+------|------+------+------+------+------+------|
-     * |      |      |      |      |      |      |      |      |      |      |      |      |
-     * |------+------+------+------+------+------|------+------+------+------+------+------|
-     * |      |      |      |      |      |      |      |      | Next | Vol- | Vol+ | Play |
-     * `-----------------------------------------------------------------------------------'
-     */
+     ,* ,-----------------------------------------------------------------------------------.
+     ,* |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
+     ,* |------+------+------+------+------+------|------+------+------+------+------+------|
+     ,* |      |      |      |      |      |      |      |   -  |   =  |      |      |      |
+     ,* |------+------+------+------+------+------|------+------+------+------+------+------|
+     ,* |      |      |      |      |      |      |      |      |      |      |      |      |
+     ,* |------+------+------+------+------+------|------+------+------+------+------+------|
+     ,* |      |      |      |      |      |      |      |      | Next | Vol- | Vol+ | Play |
+     ,* `-----------------------------------------------------------------------------------'
+     ,*/
     [_RAISE] = LAYOUT(
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MINS, KC_EQL,  KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY),
+#+end_src
 
+**** Adjust
+
+#+begin_src c :tangle ../src/keymaps/default/keymap.c
     /* Adjust (Lower + Raise)
-     * ,-----------------------------------------------------------------------------------.
-     * |Reset |      |      |      |      |      |      |      |      |      |      |      |
-     * |------+------+------+------+------+------|------+------+------+------+------+------|
-     * |      |      |      |      |      |      |      |      |      |      |      |      |
-     * |------+------+------+------+------+------|------+------+------+------+------+------|
-     * |      |      |      |      |      |      |      |      |      |      |      |      |
-     * |------+------+------+------+------+------|------+------+------+------+------+------|
-     * |      |      |      |      |      |      |      |      |      |      |      |      |
-     * `-----------------------------------------------------------------------------------'
-     */
+     ,* ,-----------------------------------------------------------------------------------.
+     ,* |Reset |      |      |      |      |      |      |      |      |      |      |      |
+     ,* |------+------+------+------+------+------|------+------+------+------+------+------|
+     ,* |      |      |      |      |      |      |      |      |      |      |      |      |
+     ,* |------+------+------+------+------+------|------+------+------+------+------+------|
+     ,* |      |      |      |      |      |      |      |      |      |      |      |      |
+     ,* |------+------+------+------+------+------|------+------+------+------+------+------|
+     ,* |      |      |      |      |      |      |      |      |      |      |      |      |
+     ,* `-----------------------------------------------------------------------------------'
+     ,*/
     [_ADJUST] = LAYOUT(
         QK_BOOT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RGB_SAD, RGB_VAD, RGB_VAI, RGB_SAI, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS)
+#+end_src
 
+#+begin_src c :tangle ../src/keymaps/default/keymap.c
 };
+#+end_src
+
+* Functions
+
+#+begin_src c :tangle ../src/keymaps/default/keymap.c
 
 /* layer_state_t layer_state_set_user(layer_state_t state) { */
 /*   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST); */
 /* } */
+#+end_src
 
+** RGB
+[[https://docs.qmk.fm/#/feature_rgblight?id=rgb-lighting][QMK Firmware - RGB Lighting]]
+
+I'm using a WS2812 led strip mounted bellow my keyboard to give an underglow effect.
+
+The code can be seen bellow:
+#+begin_src c :tangle ../src/keymaps/default/keymap.c
 //********COLORES Y ANIMACIONES****************
 uint32_t base_mode = 1; // solid
 uint32_t lock_mode = 21; // Knight Rider
@@ -279,7 +396,11 @@ bool led_update_user(led_t led_state)
     }
     return true;
 }
+#+end_src
 
+** Events
+
+#+begin_src c :tangle ../src/keymaps/default/keymap.c
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
 {
     switch(keycode)
@@ -344,3 +465,4 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     }
     return false;
 }
+#+end_src
