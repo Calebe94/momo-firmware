@@ -26,16 +26,16 @@ enum combo_events {
   MONITOR_2,
   SEND_TO_MONITOR_1,
   SEND_TO_MONITOR_2,
-  TAG1,
-  TAG2,
-  TAG3,
-  TAG4,
-  TAG5,
-  TAG6,
-  TAG7,
-  TAG8,
-  TAG9,
-  TAG0,
+  /* TAG1, */
+  /* TAG2, */
+  /* TAG3, */
+  /* TAG4, */
+  /* TAG5, */
+  /* TAG6, */
+  /* TAG7, */
+  /* TAG8, */
+  /* TAG9, */
+  /* TAG0, */
   SEND_TAG1,
   SEND_TAG2,
   SEND_TAG3,
@@ -90,16 +90,16 @@ combo_t key_combos[] = {
     [MONITOR_2] = COMBO(monitor_2_combo, LAG(KC_2)),
     [SEND_TO_MONITOR_1] = COMBO(send_to_monitor_1_combo, S(LAG(KC_1))),
     [SEND_TO_MONITOR_2] = COMBO(send_to_monitor_2_combo, S(LAG(KC_1))),
-    [TAG1] = COMBO(focus_on_tag_1, LGUI(KC_1)),
-    [TAG2] = COMBO(focus_on_tag_2, LGUI(KC_2)),
-    [TAG3] = COMBO(focus_on_tag_3, LGUI(KC_3)),
-    [TAG4] = COMBO(focus_on_tag_4, LGUI(KC_4)),
-    [TAG5] = COMBO(focus_on_tag_5, LGUI(KC_5)),
-    [TAG6] = COMBO(focus_on_tag_6, LGUI(KC_6)),
-    [TAG7] = COMBO(focus_on_tag_7, LGUI(KC_7)),
-    [TAG8] = COMBO(focus_on_tag_8, LGUI(KC_8)),
-    [TAG9] = COMBO(focus_on_tag_9, LGUI(KC_9)),
-    [TAG0] = COMBO(focus_on_tag_0, LGUI(KC_0)),
+    /* [TAG1] = COMBO(focus_on_tag_1, LGUI(KC_1)), */
+    /* [TAG2] = COMBO(focus_on_tag_2, LGUI(KC_2)), */
+    /* [TAG3] = COMBO(focus_on_tag_3, LGUI(KC_3)), */
+    /* [TAG4] = COMBO(focus_on_tag_4, LGUI(KC_4)), */
+    /* [TAG5] = COMBO(focus_on_tag_5, LGUI(KC_5)), */
+    /* [TAG6] = COMBO(focus_on_tag_6, LGUI(KC_6)), */
+    /* [TAG7] = COMBO(focus_on_tag_7, LGUI(KC_7)), */
+    /* [TAG8] = COMBO(focus_on_tag_8, LGUI(KC_8)), */
+    /* [TAG9] = COMBO(focus_on_tag_9, LGUI(KC_9)), */
+    /* [TAG0] = COMBO(focus_on_tag_0, LGUI(KC_0)), */
     [SEND_TAG1] = COMBO(send_to_tag_1, S(LGUI(KC_1))),
     [SEND_TAG2] = COMBO(send_to_tag_2, S(LGUI(KC_2))),
     [SEND_TAG3] = COMBO(send_to_tag_3, S(LGUI(KC_3))),
@@ -158,9 +158,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
     * ,-----------------------------------------------------------------------------------.
-    * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
+    * | ESC  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
     * |------+------+------+------+------+------|------+------+------+------+------+------|
-    * | ESC  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   Ç  |  ~   |
+    * | TAB  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   Ç  |  ~   |
     * |------+------+------+------+------+------|------+------+------+------+------+------|
     * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   [  |   ]  |
     * |------+------+------+------+------+------|------+------+------+------+------+------|
@@ -168,8 +168,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * `-----------------------------------------------------------------------------------'
 */
     [_QWERTY] = LAYOUT(
-        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,  KC_T,   KC_Y,   KC_U,  KC_I,    KC_O,    KC_P,    KC_BSPC,
-        KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,  KC_G,   KC_H,   KC_J,  KC_K,    KC_L,    BR_CCED, BR_TILD,
+        KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,  KC_T,   KC_Y,   KC_U,  KC_I,    KC_O,    KC_P,    KC_BSPC,
+        KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,  KC_G,   KC_H,   KC_J,  KC_K,    KC_L,    BR_CCED, BR_TILD,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,  KC_B,   KC_N,   KC_M,  KC_COMM, KC_DOT,  BR_LBRC, BR_RBRC,
         KC_LCTL, BR_BSLS, KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_ENT, RAISE, BR_SLSH, KC_RALT, BR_ACUT, KC_LABK
     ),
