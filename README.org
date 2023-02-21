@@ -1,10 +1,10 @@
-#+title: README
+#+title: Appa keyboard firmware
 #+property: header-args
 #+auto_tangle: t
 #+author: Edimar Calebe Castanho
 #+date:<2022-11-16 qua>
 
-* APPA keyboard firmware
+* Appa keyboard firmware
 
 The 4x12 ortholinear keyboard made using through hole components only.
 
@@ -16,7 +16,7 @@ This is a [[https://github.com/hsgw/plaid][plaid]] based keyboard.
 + [[https://git.calebe.dev.br/appa-keyboard-case/][appa-case]]: Appa's keyboard case.
 
 * Table of Contents :toc:
-- [[#appa-keyboard-firmware][APPA keyboard firmware]]
+- [[#appa-keyboard-firmware][Appa keyboard firmware]]
 - [[#setup][Setup]]
   - [[#init][Init]]
   - [[#bootloader][Bootloader]]

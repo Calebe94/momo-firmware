@@ -1,4 +1,4 @@
-#+title: README
+#+title: docs
 #+property: header-args
 #+auto_tangle: t
 #+author: Edimar Calebe Castanho
