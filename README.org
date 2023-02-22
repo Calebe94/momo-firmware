@@ -4,7 +4,6 @@
 #+author: Edimar Calebe Castanho
 #+date:<2022-11-16 qua>
 
-
 The 4x12 ortholinear keyboard made using through hole components only.
 
 Based on Atmega328p (Or Arduino PRO Mini) with VUSB on QMK firmware.
@@ -13,6 +12,11 @@ This is a [[https://github.com/hsgw/plaid][plaid]] based keyboard.
 
 + [[https://git.calebe.dev.br/appa-keyboard-pcb/][appa-pcb]]: Appa's keyboard printed circuit board;
 + [[https://git.calebe.dev.br/appa-keyboard-case/][appa-case]]: Appa's keyboard case.
+
+#+CAPTION: Appa
+#+ATTR_HTML: :alt appa keyboard :title Appa Keyboard :align right
+#+ATTR_HTML: :width 40% :height 40%
+[[./res/appa.jpeg]]
 
 * Table of Contents :toc:
 - [[#setup][Setup]]
