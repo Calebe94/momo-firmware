@@ -8,17 +8,17 @@ enum appa_keycodes { QWERTY = SAFE_RANGE };
 #define RAISE MO(_RAISE)
 
 const key_override_t delete_key_override =           ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
-const key_override_t comma_key_override =            ko_make_basic(MOD_MASK_SHIFT, KC_COMM, BR_SCLN);
-const key_override_t dot_key_override =              ko_make_basic(MOD_MASK_SHIFT, KC_DOT, BR_COLN);
-const key_override_t right_bracket_key_override =    ko_make_basic(MOD_MASK_SHIFT, KC_LABK, KC_RABK);
+/* const key_override_t comma_key_override =            ko_make_basic(MOD_MASK_SHIFT, KC_COMM, BR_SCLN); */
+/* const key_override_t dot_key_override =              ko_make_basic(MOD_MASK_SHIFT, KC_DOT, BR_COLN); */
+/* const key_override_t right_bracket_key_override =    ko_make_basic(MOD_MASK_SHIFT, KC_LABK, KC_RABK); */
 
 // This globally defines all key overrides to be used
 const key_override_t **key_overrides = (const key_override_t *[]){
-	&delete_key_override,
-	&comma_key_override,
-	&dot_key_override,
-	&right_bracket_key_override,
-	NULL // Null terminate the array of overrides!
+    /* &delete_key_override, */
+    /* &comma_key_override, */
+    /* &dot_key_override, */
+    /* &right_bracket_key_override, */
+    NULL // Null terminate the array of overrides!
 };
 
 enum combo_events {
@@ -82,7 +82,7 @@ const uint16_t PROGMEM send_to_tag_0[] = {KC_LSFT, KC_B, KC_P, COMBO_END};
 /* const uint16_t PROGMEM hello_world[]   = {KC_J, KC_K, COMBO_END}; */
 /* const uint16_t PROGMEM ola_mundo[]     = {KC_K, KC_J, COMBO_END}; */
 const uint16_t PROGMEM minus_combo[]   = {BR_CCED, BR_TILD, COMBO_END};
-const uint16_t PROGMEM equal_combo[]   = {BR_LBRC, BR_RBRC, COMBO_END};
+const uint16_t PROGMEM equal_combo[]   = {KC_LBRC, KC_RBRC, COMBO_END};
 const uint16_t PROGMEM clear_line_combo[] = {KC_BSPC, KC_LSFT, COMBO_END};
 
 combo_t key_combos[] = {
@@ -170,8 +170,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(
         KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,  KC_T,   KC_Y,   KC_U,  KC_I,    KC_O,    KC_P,    KC_BSPC,
         KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,  KC_G,   KC_H,   KC_J,  KC_K,    KC_L,    BR_CCED, BR_TILD,
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,  KC_B,   KC_N,   KC_M,  KC_COMM, KC_DOT,  BR_LBRC, BR_RBRC,
-        KC_LCTL, BR_BSLS, KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_ENT, RAISE, BR_SLSH, KC_RALT, BR_ACUT, KC_LABK
+        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,  KC_B,   KC_N,   KC_M,  KC_COMM, KC_DOT,  KC_LBRC, KC_RBRC,
+        KC_LCTL, BR_BSLS, KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_ENT, RAISE, KC_SLSH, KC_RALT, KC_TILDE, KC_LABK
     ),
 
 /* Lower
@@ -196,7 +196,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,-----------------------------------------------------------------------------------.
      * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
      * |------+------+------+------+------+------|------+------+------+------+------+------|
-     * |      |      |      |      |      |      |      |   -  |   =  |      |      |      |
+     * |      | BTN 1| BTN 2| BTN 3|      |      |      | M ←  |  M ↓ | M ↑  | M →  |      |      |
      * |------+------+------+------+------+------|------+------+------+------+------+------|
      * |      |      |      |      |      |      |      |      |      |      |      |      |
      * |------+------+------+------+------+------|------+------+------+------+------+------|
@@ -205,7 +205,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_RAISE] = LAYOUT(
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MINS, KC_EQL,  KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_BTN1, KC_BTN2, KC_BTN3, KC_TRNS, KC_TRNS, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY),
 
