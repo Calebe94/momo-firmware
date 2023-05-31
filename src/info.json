@@ -1,17 +1,17 @@
 {
     "manufacturer": "Edimar Calebe Castanho",
-    "keyboard_name": "appa",
+    "keyboard_name": "momo",
     "maintainer": "Calebe94",
-    "bootloader": "usbasploader",
-    "processor": "atmega328p",
-    "url": "https://git.calebe.dev.br/appa-firmware",
+    "bootloader": "rp2040",
+    "processor": "RP2040",
+    "url": "https://git.calebe.dev.br/momo-firmware",
     "usb": {
       "vid": "0x16C0",
       "pid": "0x27DB",
       "device_version": "0.0.2"
     },
     "layouts": {
-        "LAYOUT_appa_grid": {
+        "LAYOUT_momo_grid": {
             "layout": [
                 { "matrix": [0, 0], "x": 0, "y": 0 },
                 { "matrix": [0, 1], "x": 1, "y": 0 },

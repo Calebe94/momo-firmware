@@ -1,8 +1,8 @@
 # MCU name
-MCU = atmega328p
+MCU = RP2040
 
 # Bootloader selection
-BOOTLOADER = usbasploader
+BOOTLOADER = rp2040
 
 # Build Options
 #   change yes to no to disable
@@ -26,4 +26,4 @@ LAYOUTS_HAS_RGB = no
 # RGBLIGHT_SUPPORTED = no
 AUDIO_SUPPORTED = no
 BACKLIGHT_SUPPORTED = no
-RGBLIGHT_ENABLE = yes
+RGBLIGHT_ENABLE = no

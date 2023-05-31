@@ -17,7 +17,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "config_common.h"
 
 /* key matrix size */
 #define MATRIX_ROWS 4
@@ -34,9 +33,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
 #define MATRIX_ROW_PINS                                                        \
-  { B4, B5, B3, D4 }
+  { GP2, GP3, GP4, GP5 }
 #define MATRIX_COL_PINS                                                        \
-  { B0, D7, D6, D5, B2, B1, C0, C1, C2, C3, D1, D0 }
+  { GP6, GP7, GP8, GP9, GP10, GP11, GP12, GP13, GP14, GP15, GP16, GP17 }
 
 /* COL2ROW, ROW2COL*/
 #define DIODE_DIRECTION ROW2COL
@@ -142,7 +141,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* #define COMBO_TERM 50 */
 
 #define RGB_DI_PIN C4
-#define RGBLED_NUM 22
+#define RGBLED_NUM 1
 #define RGBLIGHT_ANIMATIONS
 #define RGBLIGHT_LAYERS
 #define RGBLIGHT_LIMIT_VAL 128

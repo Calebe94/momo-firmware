@@ -238,7 +238,7 @@ uint32_t lock_mode = 21; // Knight Rider
 
 void keyboard_post_init_user(void)
 {
-    rgblight_enable_noeeprom();
+    /* rgblight_enable_noeeprom(); */
     layer_state_set_user(layer_state);
 }
 
@@ -249,16 +249,16 @@ layer_state_t layer_state_set_user(layer_state_t state)
     switch (layer)
     {
         case _QWERTY:
-            rgblight_sethsv(0, rgblight_get_sat(), rgblight_get_val());
+            /* rgblight_sethsv(0, rgblight_get_sat(), rgblight_get_val()); */
             break;
         case _LOWER:
-            rgblight_sethsv(85, rgblight_get_sat(), rgblight_get_val());
+            /* rgblight_sethsv(85, rgblight_get_sat(), rgblight_get_val()); */
             break;
         case _RAISE:
-            rgblight_sethsv(170, rgblight_get_sat(), rgblight_get_val());
+            /* rgblight_sethsv(170, rgblight_get_sat(), rgblight_get_val()); */
             break;
         case _ADJUST:
-            rgblight_sethsv(43, rgblight_get_sat(), rgblight_get_val());
+            /* rgblight_sethsv(43, rgblight_get_sat(), rgblight_get_val()); */
             break;
         default:
             break;
@@ -271,11 +271,11 @@ bool led_update_user(led_t led_state)
 {
     if  (led_state.caps_lock)
     {
-        rgblight_mode_noeeprom(lock_mode);
+        /* rgblight_mode_noeeprom(lock_mode); */
     }
     else
     {
-        rgblight_mode_noeeprom(base_mode);
+        /* rgblight_mode_noeeprom(base_mode); */
     }
     return true;
 }
@@ -287,43 +287,43 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
         case RGB_VAI:
             if( record->event.pressed)
             {
-                rgblight_increase_val_noeeprom();
+                /* rgblight_increase_val_noeeprom(); */
             }
             break;
         case RGB_VAD:
             if( record->event.pressed)
             {
-                rgblight_decrease_val_noeeprom();
+                /* rgblight_decrease_val_noeeprom(); */
             }
             break;
         case RGB_SAI:
             if(record->event.pressed)
             {
-                rgblight_increase_sat();
+                /* rgblight_increase_sat(); */
             }
             break;
         case RGB_SAD:
             if( record->event.pressed)
             {
-                rgblight_decrease_sat();
+                /* rgblight_decrease_sat(); */
             }
             break;
         case RGB_HUI:
             if( record->event.pressed)
             {
-                rgblight_increase_hue_noeeprom();
+                /* rgblight_increase_hue_noeeprom(); */
             }
             break;
         case RGB_HUD:
             if( record->event.pressed)
             {
-                rgblight_decrease_hue_noeeprom();
+                /* rgblight_decrease_hue_noeeprom(); */
             }
             break;
         case RGB_TOG:
             if(record->event.pressed)
             {
-                rgblight_toggle_noeeprom();
+                /* rgblight_toggle_noeeprom(); */
             }
             break;
         case RGB_MOD:
@@ -335,7 +335,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
         case RGB_RMOD:
             if(record->event.pressed)
             {
-                rgblight_step_reverse_noeeprom();
+                /* rgblight_step_reverse_noeeprom(); */
                 /* rgb_mode = rgblight_get_mode(); */
             }
             break;
