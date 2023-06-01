@@ -9,7 +9,7 @@ project_name = "momo"
 keymap = "default"
 
 qmk_repo_url = https://github.com/qmk/qmk_firmware
-qmk_version = master
+qmk_version = 0.21.0
 
 current_path = `pwd`
 qmk_repo_path = "$(current_path)/`basename $(qmk_repo_url)`"

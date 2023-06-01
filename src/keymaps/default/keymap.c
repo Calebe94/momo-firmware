@@ -1,8 +1,8 @@
 #include QMK_KEYBOARD_H
 #include "keymap_brazilian_abnt2.h"
 
-enum appa_layers { _QWERTY, _LOWER, _RAISE, _ADJUST };
-enum appa_keycodes { QWERTY = SAFE_RANGE };
+enum momo_layers { _QWERTY, _LOWER, _RAISE, _ADJUST };
+enum momo_keycodes { QWERTY = SAFE_RANGE };
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)

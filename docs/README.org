@@ -46,8 +46,8 @@ The enumeration of the keyboard layers.
 I am using the main layer, which is the *QWERTY* layout. The *LOWER*, *RAISE* and *ADJUST* (which will be kind of the settings layer). This layers is not properly configured yet.
 
 #+begin_src c :tangle ../src/keymaps/default/keymap.c
-enum appa_layers { _QWERTY, _LOWER, _RAISE, _ADJUST };
-enum appa_keycodes { QWERTY = SAFE_RANGE };
+enum momo_layers { _QWERTY, _LOWER, _RAISE, _ADJUST };
+enum momo_keycodes { QWERTY = SAFE_RANGE };
 #+end_src
 
 *** Defines
@@ -89,7 +89,7 @@ const key_override_t **key_overrides = (const key_override_t *[]){
 
 + [[https://github.com/qmk/qmk_firmware/blob/master/docs/feature_combo.md][qmk_firmware/feature_combo.md at master · qmk/qmk_firmware · GitHub ]]
 
-Since *APPA* is a 40% keyboard (48 keys), I do not have the numbers row, so I have to add the numbers to a layer. And with it gets hard to reproduce my [[https://github.com/Calebe94/dwm/][dwm]] keybindings. So I am using [[https://github.com/qmk/qmk_firmware/blob/master/docs/feature_combo.md][qmk combo feature]] to create key combos (duh!). I am using the *"W"* key to be the "lead key" to move my cursor between my monitors.
+Since *MOMO* is a 40% keyboard (48 keys), I do not have the numbers row, so I have to add the numbers to a layer. And with it gets hard to reproduce my [[https://github.com/Calebe94/dwm/][dwm]] keybindings. So I am using [[https://github.com/qmk/qmk_firmware/blob/master/docs/feature_combo.md][qmk combo feature]] to create key combos (duh!). I am using the *"W"* key to be the "lead key" to move my cursor between my monitors.
 And the *"B"* to be the "lead key" to control my clients "buffers".
 
 #+begin_src c :tangle ../src/keymaps/default/keymap.c
@@ -236,7 +236,7 @@ const uint16_t modifiers[] = {KC_LCTL, KC_RCTL, KC_LALT, KC_RALT, KC_LSFT, KC_RS
 
 #+attr_html: :width 100px
 #+attr_latex: :width 100px
-[[./appa-layout.png]]
+[[./momo-layout.png]]
 
 #+begin_src c :tangle ../src/keymaps/default/keymap.c
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -343,7 +343,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #+end_src
 
 ** RGB
-[[https://docs.qmk.fm/#/feature_rgblight?id=rgb-lighting][QMK Firmware - RGB Lighting]]
+[[https://docs.qmk.fm/#/feature_//rgblight?id=rgb-lighting][QMK Firmware - RGB Lighting]]
 
 I'm using a WS2812 led strip mounted bellow my keyboard to give an underglow effect.
 
@@ -355,7 +355,7 @@ uint32_t lock_mode = 21; // Knight Rider
 
 void keyboard_post_init_user(void)
 {
-    rgblight_enable_noeeprom();
+    /* rgblight_enable_noeeprom(); */
     layer_state_set_user(layer_state);
 }
 
@@ -366,16 +366,16 @@ layer_state_t layer_state_set_user(layer_state_t state)
     switch (layer)
     {
         case _QWERTY:
-            rgblight_sethsv(0, rgblight_get_sat(), rgblight_get_val());
+            /* rgblight_sethsv(0, rgblight_get_sat(), rgblight_get_val()); */
             break;
         case _LOWER:
-            rgblight_sethsv(85, rgblight_get_sat(), rgblight_get_val());
+            /* rgblight_sethsv(85, rgblight_get_sat(), rgblight_get_val()); */
             break;
         case _RAISE:
-            rgblight_sethsv(170, rgblight_get_sat(), rgblight_get_val());
+            /* rgblight_sethsv(170, rgblight_get_sat(), rgblight_get_val()); */
             break;
         case _ADJUST:
-            rgblight_sethsv(43, rgblight_get_sat(), rgblight_get_val());
+            /* rgblight_sethsv(43, rgblight_get_sat(), rgblight_get_val()); */
             break;
         default:
             break;
@@ -388,11 +388,11 @@ bool led_update_user(led_t led_state)
 {
     if  (led_state.caps_lock)
     {
-        rgblight_mode_noeeprom(lock_mode);
+        /* rgblight_mode_noeeprom(lock_mode); */
     }
     else
     {
-        rgblight_mode_noeeprom(base_mode);
+        /* rgblight_mode_noeeprom(base_mode); */
     }
     return true;
 }
@@ -408,43 +408,43 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
         case RGB_VAI:
             if( record->event.pressed)
             {
-                rgblight_increase_val_noeeprom();
+                /* rgblight_increase_val_noeeprom(); */
             }
             break;
         case RGB_VAD:
             if( record->event.pressed)
             {
-                rgblight_decrease_val_noeeprom();
+                /* rgblight_decrease_val_noeeprom(); */
             }
             break;
         case RGB_SAI:
             if(record->event.pressed)
             {
-                rgblight_increase_sat();
+                /* rgblight_increase_sat(); */
             }
             break;
         case RGB_SAD:
             if( record->event.pressed)
             {
-                rgblight_decrease_sat();
+                /* rgblight_decrease_sat(); */
             }
             break;
         case RGB_HUI:
             if( record->event.pressed)
             {
-                rgblight_increase_hue_noeeprom();
+                /* rgblight_increase_hue_noeeprom(); */
             }
             break;
         case RGB_HUD:
             if( record->event.pressed)
             {
-                rgblight_decrease_hue_noeeprom();
+                /* rgblight_decrease_hue_noeeprom(); */
             }
             break;
         case RGB_TOG:
             if(record->event.pressed)
             {
-                rgblight_toggle_noeeprom();
+                /* rgblight_toggle_noeeprom(); */
             }
             break;
         case RGB_MOD:
@@ -456,7 +456,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
         case RGB_RMOD:
             if(record->event.pressed)
             {
-                rgblight_step_reverse_noeeprom();
+                /* rgblight_step_reverse_noeeprom(); */
                 /* rgb_mode = rgblight_get_mode(); */
             }
             break;
