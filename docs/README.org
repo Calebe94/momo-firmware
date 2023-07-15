@@ -76,7 +76,7 @@ const key_override_t delete_key_override =           ko_make_basic(MOD_MASK_SHIF
 
 // This globally defines all key overrides to be used
 const key_override_t **key_overrides = (const key_override_t *[]){
-    /* &delete_key_override, */
+    &delete_key_override,
     /* &comma_key_override, */
     /* &dot_key_override, */
     /* &right_bracket_key_override, */
@@ -232,6 +232,20 @@ bool get_combo_must_press_in_order(uint16_t combo_index, combo_t *combo)
 const uint16_t modifiers[] = {KC_LCTL, KC_RCTL, KC_LALT, KC_RALT, KC_LSFT, KC_RSFT, KC_LGUI, KC_RGUI, LOWER, RAISE};
 #+end_src
 
+*** TAP DANCE
+#+begin_src c :tangle ../src/keymaps/default/keymap.c
+// Tap Dance declarations
+enum {
+    TD_ESC_CAPS,
+};
+
+// Tap Dance definitions
+tap_dance_action_t tap_dance_actions[] = {
+    // Tap once for Escape, twice for Caps Lock
+    [TD_ESC_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_CAPS),
+};
+#+end_src
+
 *** Keymaps
 
 #+attr_html: :width 100px
@@ -256,7 +270,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ,* `-----------------------------------------------------------------------------------'
 */
 [_QWERTY] = LAYOUT(
-    KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,  KC_T,   KC_Y,   KC_U,  KC_I,    KC_O,    KC_P,     KC_BSPC,
+    TD(TD_ESC_CAPS),  KC_Q,    KC_W,    KC_E,    KC_R,  KC_T,   KC_Y,   KC_U,  KC_I,    KC_O,    KC_P,    KC_BSPC,
     KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,  KC_G,   KC_H,   KC_J,  KC_K,    KC_L,    BR_CCED,  BR_TILD,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,  KC_B,   KC_N,   KC_M,  KC_COMM, KC_DOT,  KC_LBRC,  KC_RBRC,
     KC_LCTL, BR_BSLS, KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_ENT, RAISE, KC_SLSH, KC_RALT, KC_MINUS, KC_EQUAL
@@ -355,7 +369,7 @@ uint32_t lock_mode = 21; // Knight Rider
 
 void keyboard_post_init_user(void)
 {
-    /* rgblight_enable_noeeprom(); */
+    rgblight_enable_noeeprom();
     layer_state_set_user(layer_state);
 }
 
@@ -366,16 +380,16 @@ layer_state_t layer_state_set_user(layer_state_t state)
     switch (layer)
     {
         case _QWERTY:
-            /* rgblight_sethsv(0, rgblight_get_sat(), rgblight_get_val()); */
+            rgblight_sethsv(0, rgblight_get_sat(), rgblight_get_val());
             break;
         case _LOWER:
-            /* rgblight_sethsv(85, rgblight_get_sat(), rgblight_get_val()); */
+            rgblight_sethsv(85, rgblight_get_sat(), rgblight_get_val());
             break;
         case _RAISE:
-            /* rgblight_sethsv(170, rgblight_get_sat(), rgblight_get_val()); */
+            rgblight_sethsv(170, rgblight_get_sat(), rgblight_get_val());
             break;
         case _ADJUST:
-            /* rgblight_sethsv(43, rgblight_get_sat(), rgblight_get_val()); */
+            rgblight_sethsv(43, rgblight_get_sat(), rgblight_get_val());
             break;
         default:
             break;
@@ -388,11 +402,11 @@ bool led_update_user(led_t led_state)
 {
     if  (led_state.caps_lock)
     {
-        /* rgblight_mode_noeeprom(lock_mode); */
+        rgblight_mode_noeeprom(lock_mode);
     }
     else
     {
-        /* rgblight_mode_noeeprom(base_mode); */
+        rgblight_mode_noeeprom(base_mode);
     }
     return true;
 }
@@ -408,43 +422,43 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
         case RGB_VAI:
             if( record->event.pressed)
             {
-                /* rgblight_increase_val_noeeprom(); */
+                rgblight_increase_val_noeeprom();
             }
             break;
         case RGB_VAD:
             if( record->event.pressed)
             {
-                /* rgblight_decrease_val_noeeprom(); */
+                rgblight_decrease_val_noeeprom();
             }
             break;
         case RGB_SAI:
             if(record->event.pressed)
             {
-                /* rgblight_increase_sat(); */
+                rgblight_increase_sat();
             }
             break;
         case RGB_SAD:
             if( record->event.pressed)
             {
-                /* rgblight_decrease_sat(); */
+                rgblight_decrease_sat();
             }
             break;
         case RGB_HUI:
             if( record->event.pressed)
             {
-                /* rgblight_increase_hue_noeeprom(); */
+                rgblight_increase_hue_noeeprom();
             }
             break;
         case RGB_HUD:
             if( record->event.pressed)
             {
-                /* rgblight_decrease_hue_noeeprom(); */
+                rgblight_decrease_hue_noeeprom();
             }
             break;
         case RGB_TOG:
             if(record->event.pressed)
             {
-                /* rgblight_toggle_noeeprom(); */
+                rgblight_toggle_noeeprom();
             }
             break;
         case RGB_MOD:
@@ -456,7 +470,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
         case RGB_RMOD:
             if(record->event.pressed)
             {
-                /* rgblight_step_reverse_noeeprom(); */
+                rgblight_step_reverse_noeeprom();
                 /* rgb_mode = rgblight_get_mode(); */
             }
             break;
