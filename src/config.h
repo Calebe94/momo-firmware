@@ -142,7 +142,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define WS2812_DI_PIN GP23
 #define RGB_DI_PIN GP23
-#define RGBLED_NUM 100
+#define RGBLED_NUM 57
 #define RGBLIGHT_ANIMATIONS
 #define RGBLIGHT_LAYERS
 #define RGBLIGHT_LIMIT_VAL 128
