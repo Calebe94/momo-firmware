@@ -400,20 +400,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     return false;
 }
 
-bool encoder_update_kb(uint8_t index, bool clockwise) {
-    if (!encoder_update_user(index, clockwise)) {
+bool encoder_update_kb(uint8_t index, bool clockwise)
+{
+    if (!encoder_update_user(index, clockwise))
+    {
       return false; /* Don't process further events if user function exists and returns false */
     }
-    if (index == 0) { /* First encoder */
+    if (index == 0)
+    {
         if (clockwise) {
             tap_code(KC_PGDN);
         } else {
             tap_code(KC_PGUP);
         }
-    } else if (index == 1) { /* Second encoder */
-        if (clockwise) {
+    }
+    // I don't have a second encoder yet, but I'll let this here just in case
+    else if (index == 1)
+    { /* Second encoder */
+        if (clockwise)
+        {
             rgblight_increase_hue_noeeprom();
-        } else {
+        }
+        else
+        {
             rgblight_decrease_hue_noeeprom();
         }
     }

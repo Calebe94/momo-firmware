@@ -150,7 +150,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* #define NOP_FUDGE 0.4 */
 #define RGBLIGHT_LAYER_BLINK
 
-#define ENCODERS_PAD_A { GP27 }
+#define ENCODERS_PAD_A { GP22 }
 #define ENCODERS_PAD_B { GP28 }
 
 #define DIP_SWITCH_PINS { GP20, GP21, GP29 }
+
+#define ANALOG_JOYSTICK_X_AXIS_PIN GP27
+#define ANALOG_JOYSTICK_Y_AXIS_PIN GP26
+#define ANALOG_JOYSTICK_SPEED_REGULATOR 10
+#define ANALOG_JOYSTICK_SPEED_MAX 5
+#define ANALOG_JOYSTICK_AXIS_MIN 20
