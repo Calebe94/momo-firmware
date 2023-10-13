@@ -399,3 +399,64 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     }
     return false;
 }
+
+bool encoder_update_kb(uint8_t index, bool clockwise) {
+    if (!encoder_update_user(index, clockwise)) {
+      return false; /* Don't process further events if user function exists and returns false */
+    }
+    if (index == 0) { /* First encoder */
+        if (clockwise) {
+            tap_code(KC_PGDN);
+        } else {
+            tap_code(KC_PGUP);
+        }
+    } else if (index == 1) { /* Second encoder */
+        if (clockwise) {
+            rgblight_increase_hue_noeeprom();
+        } else {
+            rgblight_decrease_hue_noeeprom();
+        }
+    }
+    return true;
+}
+
+bool dip_switch_update_user(uint8_t index, bool active)
+{
+    switch (index)
+    {
+        case 0: {
+            if (active)
+            {
+                tap_code(KC_BTN1);
+            }
+            else
+            {
+
+            }
+            break;
+        }
+        case 1: {
+            if (active)
+            {
+                tap_code(KC_BTN2);
+            }
+            else
+            {
+
+            }
+            break;
+        }
+        case 2: {
+            if (active)
+            {
+                tap_code(KC_BTN3);
+            }
+            else
+            {
+
+            }
+            break;
+        }
+    }
+    return true;
+}
