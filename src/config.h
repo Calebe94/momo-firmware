@@ -140,8 +140,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define COMBO_MUST_PRESS_IN_ORDER_PER_COMBO 1
 /* #define COMBO_TERM 50 */
 
-#define RGB_DI_PIN C4
-#define RGBLED_NUM 1
+#define WS2812_DI_PIN GP23
+#define RGB_DI_PIN GP23
+#define RGBLED_NUM 57
 #define RGBLIGHT_ANIMATIONS
 #define RGBLIGHT_LAYERS
 #define RGBLIGHT_LIMIT_VAL 128
+/* #define WS2812_PIO_USE_PIO1 // Force the usage of PIO1 peripheral, by default the WS2812 implementation uses the PIO0 peripheral */
+/* #define NOP_FUDGE 0.4 */
+#define RGBLIGHT_LAYER_BLINK
+
+#define ENCODERS_PAD_A { GP22 }
+#define ENCODERS_PAD_B { GP28 }
+
+#define DIP_SWITCH_PINS { GP20, GP21, GP29 }
+
+#define ANALOG_JOYSTICK_X_AXIS_PIN GP27
+#define ANALOG_JOYSTICK_Y_AXIS_PIN GP26
+#define ANALOG_JOYSTICK_SPEED_REGULATOR 10
+#define ANALOG_JOYSTICK_SPEED_MAX 5
+#define ANALOG_JOYSTICK_AXIS_MIN 20

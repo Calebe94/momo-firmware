@@ -1,4 +1,4 @@
-#+title: Appa keyboard firmware
+#+title: Momo keyboard firmware
 #+property: header-args
 #+auto_tangle: t
 #+author: Edimar Calebe Castanho
@@ -10,13 +10,13 @@ Based on Atmega328p (Or Arduino PRO Mini) with VUSB on QMK firmware.
 
 This is a [[https://github.com/hsgw/plaid][plaid]] based keyboard.
 
-+ [[https://git.calebe.dev.br/appa-keyboard-pcb/][appa-pcb]]: Appa's keyboard printed circuit board;
-+ [[https://git.calebe.dev.br/appa-keyboard-case/][appa-case]]: Appa's keyboard case.
++ [[https://git.calebe.dev.br/momo-keyboard-pcb/][momo-pcb]]: Momo's keyboard printed circuit board;
++ [[https://git.calebe.dev.br/momo-keyboard-case/][momo-case]]: Momo's keyboard case.
 
-#+CAPTION: Appa
-#+ATTR_HTML: :alt appa keyboard :title Appa Keyboard :align right
+#+CAPTION: Momo
+#+ATTR_HTML: :alt momo keyboard :title Momo Keyboard :align right
 #+ATTR_HTML: :width 40% :height 40%
-[[./res/appa.jpeg]]
+[[./res/momo.jpeg]]
 
 * Table of Contents :toc:
 - [[#setup][Setup]]
@@ -47,7 +47,7 @@ make bootloader
 
 ** Production
 
-Flash a custom firmware which combines the "usbasploader" (from "plaid" project) and the Appa firmware.
+Flash a custom firmware which combines the "usbasploader" (from "plaid" project) and the Momo firmware.
 
 #+begin_src shell
 make production
@@ -55,7 +55,7 @@ make production
 
 ** Compile
 
-Compile the Appa project using the QMK SDK.
+Compile the Momo project using the QMK SDK.
 
 #+begin_src shell
 make compile
@@ -63,7 +63,7 @@ make compile
 
 ** Flash
 
-Flash the Appa firmware to the keyboard.
+Flash the Momo firmware to the keyboard.
 
 #+begin_src shell
 make compile
