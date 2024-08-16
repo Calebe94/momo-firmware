@@ -4,12 +4,12 @@
 #+author: Edimar Calebe Castanho
 #+date:<2022-11-16 qua>
 
-The 4x12 ortholinear keyboard based on [rp2040](https://www.raspberrypi.com/documentation/microcontrollers/silicon.html#rp2040) and inspired by [Appa](https://github.com/calebe94/appa-firmware).
+The 4x12 ortholinear keyboard using the [[https://www.raspberrypi.com/documentation/microcontrollers/silicon.html#rp2040][rp2040]] and based on [[https://github.com/calebe94/appa-firmware][Appa]].
 
-This is a [[https://github.com/hsgw/plaid][plaid]] based keyboard.
+Introducing the Momo, a custom 4x12 ortholinear mechanical keyboard built with the RP2040 microcontroller and inspired by the [[https://github.com/calebe94/appa-firmware][Appa]]. This keyboard features Cherry MX switches, full RGB backlighting with WS2812b and SK6812 LEDs, and an innovative "open" case design. Equipped with hotswap functionality, the Momo allows for easy switch changes without soldering, combining style and performance effortlessly.
 
-+ [[https://git.calebe.dev.br/momo-keyboard-pcb/][momo-pcb]]: Momo's keyboard printed circuit board;
-+ [[https://git.calebe.dev.br/momo-keyboard-case/][momo-case]]: Momo's keyboard case.
++ PCB design: [[https://github.com/Calebe94/momo-pcb/][momo-pcb]]
++ Case design: [[https://github.com/Calebe94/momo-case][momo-case]]
 
 #+CAPTION: Momo
 #+ATTR_HTML: :alt momo keyboard :title Momo Keyboard :align right
@@ -17,55 +17,39 @@ This is a [[https://github.com/hsgw/plaid][plaid]] based keyboard.
 [[./res/momo.jpeg]]
 
 * Table of Contents :toc:
-- [[#setup][Setup]]
-  - [[#init][Init]]
-  - [[#bootloader][Bootloader]]
-  - [[#production][Production]]
-  - [[#compile][Compile]]
-  - [[#flash][Flash]]
+- [[#initialization][Initialization]]
+- [[#compilation][Compilation]]
+- [[#flashing][Flashing]]
+- [[#developer][Developer]]
 - [[#useful-links][Useful links]]
 
-* Setup
+* Initialization
 
-** Init
-
-Initialize the project
+Begin by initializing the project.
 
 #+begin_src shell
 make init
 #+end_src
 
-** Bootloader
+* Compilation
 
-Flash the "usbasploader" bootloader (from "plaid" project) to keyboard.
-
-#+begin_src shell
-make bootloader
-#+end_src
-
-** Production
-
-Flash a custom firmware which combines the "usbasploader" (from "plaid" project) and the Momo firmware.
-
-#+begin_src shell
-make production
-#+end_src
-
-** Compile
-
-Compile the Momo project using the QMK SDK.
+Compile the Momo project using the QMK SDK to generate the firmware.
 
 #+begin_src shell
 make compile
 #+end_src
 
-** Flash
+* Flashing
 
-Flash the Momo firmware to the keyboard.
+Flash the compiled Momo firmware onto the keyboard to complete the setup.
 
 #+begin_src shell
-make compile
+make flash
 #+end_src
+
+* Developer
+
+[[https://github.com/Calebe94][Calebe94 (E. Calebe) · GitHub]]
 
 * Useful links
 + [[https://github.com/qmk/qmk_firmware/blob/master/docs/flashing.md][GitHub · qmk_firmware/flashing.md at master · qmk/qmk_firmware]];

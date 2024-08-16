@@ -30,10 +30,6 @@ flash:
 	cd $(qmk_repo_path); qmk flash -kb "$(project_name)" -km "$(keymap)"
 	@echo "done!"
 
-flash_bootloader:
-	@echo "Flashing 'usbasploader' bootloader to keyboard..."
-	@echo "done!"
-
 symlink:
 	@echo "Creating symbolic link for '$(project_name)' firmware..."
 	ln -s "$(current_path)/src" "$(qmk_repo_path)/keyboards/$(project_name)"
@@ -56,5 +52,5 @@ clean:
 	@echo "done!"
 
 .POSIX:
-.PHONY: init create_hex bootloader production compile flash flash_bootloader symlink check_dependencies qmk_firmware clean
+.PHONY: init create_hex compile flash symlink check_dependencies qmk_firmware clean
 # end
