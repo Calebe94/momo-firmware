@@ -8,16 +8,10 @@ enum momo_keycodes { QWERTY = SAFE_RANGE };
 #define RAISE MO(_RAISE)
 
 const key_override_t delete_key_override =           ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
-/* const key_override_t comma_key_override =            ko_make_basic(MOD_MASK_SHIFT, KC_COMM, BR_SCLN); */
-/* const key_override_t dot_key_override =              ko_make_basic(MOD_MASK_SHIFT, KC_DOT, BR_COLN); */
-/* const key_override_t right_bracket_key_override =    ko_make_basic(MOD_MASK_SHIFT, KC_LABK, KC_RABK); */
 
 // This globally defines all key overrides to be used
 const key_override_t **key_overrides = (const key_override_t *[]){
     &delete_key_override,
-    /* &comma_key_override, */
-    /* &dot_key_override, */
-    /* &right_bracket_key_override, */
     NULL // Null terminate the array of overrides!
 };
 
@@ -26,16 +20,6 @@ enum combo_events {
   MONITOR_2,
   SEND_TO_MONITOR_1,
   SEND_TO_MONITOR_2,
-  /* TAG1, */
-  /* TAG2, */
-  /* TAG3, */
-  /* TAG4, */
-  /* TAG5, */
-  /* TAG6, */
-  /* TAG7, */
-  /* TAG8, */
-  /* TAG9, */
-  /* TAG0, */
   SEND_TAG1,
   SEND_TAG2,
   SEND_TAG3,
@@ -79,8 +63,6 @@ const uint16_t PROGMEM send_to_tag_7[] = {KC_LSFT, KC_B, KC_U, COMBO_END};
 const uint16_t PROGMEM send_to_tag_8[] = {KC_LSFT, KC_B, KC_I, COMBO_END};
 const uint16_t PROGMEM send_to_tag_9[] = {KC_LSFT, KC_B, KC_O, COMBO_END};
 const uint16_t PROGMEM send_to_tag_0[] = {KC_LSFT, KC_B, KC_P, COMBO_END};
-/* const uint16_t PROGMEM hello_world[]   = {KC_J, KC_K, COMBO_END}; */
-/* const uint16_t PROGMEM ola_mundo[]     = {KC_K, KC_J, COMBO_END}; */
 const uint16_t PROGMEM minus_combo[]   = {BR_CCED, BR_TILD, COMBO_END};
 const uint16_t PROGMEM equal_combo[]   = {KC_LBRC, KC_RBRC, COMBO_END};
 const uint16_t PROGMEM clear_line_combo[] = {KC_BSPC, KC_LSFT, COMBO_END};
@@ -90,16 +72,6 @@ combo_t key_combos[] = {
     [MONITOR_2] = COMBO(monitor_2_combo, LAG(KC_2)),
     [SEND_TO_MONITOR_1] = COMBO(send_to_monitor_1_combo, S(LAG(KC_1))),
     [SEND_TO_MONITOR_2] = COMBO(send_to_monitor_2_combo, S(LAG(KC_1))),
-    /* [TAG1] = COMBO(focus_on_tag_1, LGUI(KC_1)), */
-    /* [TAG2] = COMBO(focus_on_tag_2, LGUI(KC_2)), */
-    /* [TAG3] = COMBO(focus_on_tag_3, LGUI(KC_3)), */
-    /* [TAG4] = COMBO(focus_on_tag_4, LGUI(KC_4)), */
-    /* [TAG5] = COMBO(focus_on_tag_5, LGUI(KC_5)), */
-    /* [TAG6] = COMBO(focus_on_tag_6, LGUI(KC_6)), */
-    /* [TAG7] = COMBO(focus_on_tag_7, LGUI(KC_7)), */
-    /* [TAG8] = COMBO(focus_on_tag_8, LGUI(KC_8)), */
-    /* [TAG9] = COMBO(focus_on_tag_9, LGUI(KC_9)), */
-    /* [TAG0] = COMBO(focus_on_tag_0, LGUI(KC_0)), */
     [SEND_TAG1] = COMBO(send_to_tag_1, S(LGUI(KC_1))),
     [SEND_TAG2] = COMBO(send_to_tag_2, S(LGUI(KC_2))),
     [SEND_TAG3] = COMBO(send_to_tag_3, S(LGUI(KC_3))),
@@ -109,9 +81,6 @@ combo_t key_combos[] = {
     [SEND_TAG7] = COMBO(send_to_tag_7, S(LGUI(KC_7))),
     [SEND_TAG8] = COMBO(send_to_tag_8, S(LGUI(KC_8))),
     [SEND_TAG9] = COMBO(send_to_tag_9, S(LGUI(KC_9))),
-
-    /* [HELLO_WORLD] = COMBO_ACTION(hello_world), */
-    /* [OLA_MUNDO] = COMBO_ACTION(ola_mundo), */
     [MINUS] = COMBO(minus_combo, KC_MINS),
     [EQUAL] = COMBO(equal_combo, KC_EQL),
 };
@@ -178,12 +147,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * | Ctrl |   \  | Alt  | GUI  |Lower | Space| ENTER| Raise|   /  | RAlt |   -  |   =  |
     * `-----------------------------------------------------------------------------------'
 */
-[_QWERTY] = LAYOUT(
-    TD(TD_ESC_CAPS),  KC_Q,    KC_W,    KC_E,    KC_R,  KC_T,   KC_Y,   KC_U,  KC_I,    KC_O,    KC_P,    KC_BSPC,
-    KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,  KC_G,   KC_H,   KC_J,  KC_K,    KC_L,    BR_CCED,  BR_TILD,
-    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,  KC_B,   KC_N,   KC_M,  KC_COMM, KC_DOT,  KC_LBRC,  KC_RBRC,
-    KC_LCTL, BR_BSLS, KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_ENT, RAISE, KC_SLSH, KC_RALT, KC_MINUS, KC_EQUAL
-),
+    [_QWERTY] = LAYOUT(
+        TD(TD_ESC_CAPS),  KC_Q,    KC_W,    KC_E,    KC_R,   KC_T,   KC_Y,   KC_U,    KC_I,    KC_O,     KC_P,     KC_BSPC,
+        KC_TAB,           KC_A,    KC_S,    KC_D,    KC_F,   KC_G,   KC_H,   KC_J,    KC_K,    KC_L,     BR_CCED,  BR_TILD,
+        KC_LSFT,          KC_Z,    KC_X,    KC_C,    KC_V,   KC_B,   KC_N,   KC_M,    KC_COMM, KC_DOT,   KC_LBRC,  KC_RBRC,
+        KC_LCTL,          BR_BSLS, KC_LALT, KC_LGUI, LOWER,  KC_SPC, KC_ENT, RAISE,   KC_SLSH, KC_RALT,  KC_MINUS, KC_EQUAL
+    ),
 
 /* Lower
     * ,-----------------------------------------------------------------------------------.
@@ -218,7 +187,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
         KC_TRNS, KC_BTN1, KC_BTN2, KC_BTN3, KC_TRNS, KC_TRNS, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY),
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
+    ),
 
     /* Adjust (Lower + Raise)
      * ,-----------------------------------------------------------------------------------.
@@ -235,7 +205,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         QK_BOOT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MPRV, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RGB_SAD, RGB_VAD, RGB_VAI, RGB_SAI, KC_TRNS, KC_TRNS,
         KC_CAPS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MNXT, KC_MUTE, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS)
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+    )
 
 };
 
@@ -410,14 +381,10 @@ bool encoder_update_kb(uint8_t index, bool clockwise)
     {
         if (clockwise)
         {
-            /* tap_code(KC_PGDN); */
-            /* tap_code(KC_DOWN); */
             tap_code(KC_KB_VOLUME_UP);
         }
         else
         {
-            /* tap_code(KC_PGUP); */
-            /* tap_code(KC_UP); */
             tap_code(KC_KB_VOLUME_DOWN);
         }
     }
@@ -443,36 +410,21 @@ bool dip_switch_update_user(uint8_t index, bool active)
         case 0: {
             if (active)
             {
-                /* tap_code(KC_BTN1); */
                 tap_code(KC_PRINT_SCREEN);
-            }
-            else
-            {
-
             }
             break;
         }
         case 1: {
             if (active)
             {
-                /* tap_code(KC_BTN2); */
                 tap_code(KC_MEDIA_PLAY_PAUSE);
-            }
-            else
-            {
-
             }
             break;
         }
         case 2: {
             if (active)
             {
-                /* tap_code(KC_BTN3); */
                 tap_code(KC_KB_MUTE);
-            }
-            else
-            {
-
             }
             break;
         }
